@@ -1,13 +1,7 @@
 @extends('layouts.master-dashboard')
 @section('content')
     
-    <!-- Content Wrapper -->
-   
-
-        <!-- Main Content -->
-        <div id="content">
-
-         
+       
 
             <!-- Begin Page Content -->
             <div class="container-fluid">
@@ -341,7 +335,5 @@
             <!-- /.container-fluid -->
 
    
-        <!-- End of Main Content -->
-    </div>
 
 @endsection
