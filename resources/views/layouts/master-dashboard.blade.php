@@ -24,23 +24,23 @@
 
 <body id="page-top">
 
-<!-- Page Wrapper -->
-<div id="wrapper">
-    @include('layouts.menu')
-    <div id="content-wrapper" class="d-flex flex-column">
-      
-        <div id="content">
-            @include('layouts.topbar') 
-            @yield('content')
+    <!-- Page Wrapper -->
+    <div id="wrapper">
+        @include('layouts.menu')
+        <div id="content-wrapper" class="d-flex flex-column">
+
+            <div id="content">
+                @include('layouts.topbar')
+                @yield('content')
+            </div>
+
         </div>
 
-       </div>
-   
-       @include('layouts.scrolltop')
-   
-   
-    
-</div>
+        @include('layouts.scrolltop')
+
+
+
+    </div>
 
     <!-- Bootstrap core JavaScript-->
     <script src="{{ asset('vendor/jquery/jquery.min.js') }}"></script>
@@ -52,7 +52,7 @@
     <!-- Page level plugins -->
     <script src="{{ asset('vendor/chart.js/Chart.min.js') }} "></script>
     <!-- Page level custom scripts -->
-    <script src="{{ asset('js/demo/chart-area-demo.js')}}"></script>
+    <script src="{{ asset('js/demo/chart-area-demo.js') }}"></script>
     <script src="{{ asset('js/demo/chart-pie-demo.js') }}"></script>
 
 </body>
