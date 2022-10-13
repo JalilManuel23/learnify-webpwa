@@ -16,6 +16,7 @@ use Illuminate\Support\Facades\Auth;
 
 
 Route::view('admin', 'admin.index');
+Route::view('admin/example', 'admin.example');
 
 Auth::routes();
 
