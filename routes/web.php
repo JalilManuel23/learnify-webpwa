@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\Auth;
 
 /*
 |--------------------------------------------------------------------------
@@ -15,6 +16,7 @@ use Illuminate\Support\Facades\Route;
 
 
 Route::view('admin', 'admin.index');
+Route::view('admin/example', 'admin.example');
 
 Auth::routes();
 

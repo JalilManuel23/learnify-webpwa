@@ -23,23 +23,21 @@
 </head>
 
 <body id="page-top">
-
     <!-- Page Wrapper -->
-    <div id="wrapper">
-        @include('layouts.menu')
-        <div id="content-wrapper" class="d-flex flex-column">
+    <div id="app">
+        <div id="wrapper">
+            @include('layouts.menu')
+            <div id="content-wrapper" class="d-flex flex-column">
 
-            <div id="content">
-                @include('layouts.topbar')
-                @yield('content')
+                <div id="content">
+                    @include('layouts.topbar')
+                    @yield('content')
+                </div>
+
             </div>
 
+            @include('layouts.scrolltop')
         </div>
-
-        @include('layouts.scrolltop')
-
-
-
     </div>
 
     <!-- Bootstrap core JavaScript-->
