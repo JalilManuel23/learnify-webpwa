@@ -13,5 +13,10 @@
             body="Body de la card en Vue"
         >
         </ejemplo-component>
+        <ejemplo-component 
+            title="Ejemplo en Vue 2 "
+            body="Body de la card en Vue ..... Ejemplo 2"
+        >
+        </ejemplo-component>
     </div>
 @endsection
