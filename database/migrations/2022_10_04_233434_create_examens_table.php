@@ -22,8 +22,8 @@ class CreateExamensTable extends Migration
             $table->string('calificacion');
             $table->timestamps();
 
-            $table->foreignId('id')->constrained('cursos');
-            $table->foreignId('id')->constrained('preguntas');
+            //$table->foreignId('id')->constrained('cursos');
+            //$table->foreignId('id')->constrained('preguntas');
         });
     }
 

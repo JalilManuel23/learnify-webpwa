@@ -20,7 +20,7 @@ class CreateInstructoresTable extends Migration
             $table->string('especialidad');
             $table->timestamps();
 
-            $table->foreignId('id')->constrained('users');
+           // $table->foreignId('id')->constrained('users');
         });
     }
 

@@ -18,7 +18,7 @@ class CreateEstudiantesTable extends Migration
             $table->string('nombre');
             $table->timestamps();
 
-            $table->foreignId('id')->constrained('users');
+            // $table->foreignId('id')->constrained('users');
         });
     }
 

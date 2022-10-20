@@ -23,8 +23,8 @@ class CreateCursosTable extends Migration
             $table->string('precio');
             $table->timestamps();
 
-            $table->foreignId('id')->constrained('categorias');
-            $table->foreignId('id')->constrained('instructores');
+            //$table->foreignId('id')->constrained('categorias');
+            //$table->foreignId('id')->constrained('instructores');
         });
     }
 

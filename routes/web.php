@@ -17,8 +17,8 @@ use Illuminate\Support\Facades\Auth;
 
 Route::view('admin', 'admin.index');
 Route::view('admin/example', 'admin.example');
-Route::view('ejemplo', 'ejemplo');
 
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Route::get('/ejemplo', [App\Http\Controllers\RoleController::class, 'index'])->name('ejemplo');

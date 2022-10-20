@@ -23,8 +23,8 @@ class CreateInscripcionesTable extends Migration
             $table->string('estatus');
             $table->timestamps();
             
-            $table->foreignId('id')->constrained('estudiantes');
-            $table->foreignId('id')->constrained('cursos');
+            //$table->foreignId('id')->constrained('estudiantes');
+            //$table->foreignId('id')->constrained('cursos');
         });
     }
 

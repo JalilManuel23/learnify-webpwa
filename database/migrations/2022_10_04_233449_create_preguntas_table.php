@@ -23,7 +23,7 @@ class CreatePreguntasTable extends Migration
             $table->string('respuesta_tres');
             $table->timestamps();
 
-            $table->foreignId('id')->constrained('examens');
+           // $table->foreignId('id')->constrained('examens');
         });
     }
 

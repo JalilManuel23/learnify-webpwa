@@ -19,7 +19,7 @@ class CreateCategoriasTable extends Migration
             $table->string('titulo');
             $table->timestamps();
 
-            $table->foreignId('id')->constrained('cursos');
+            //$table->foreignId('id')->constrained('cursos');
         });
     }
 

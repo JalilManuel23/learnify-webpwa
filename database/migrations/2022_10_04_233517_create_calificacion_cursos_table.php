@@ -22,8 +22,8 @@ class CreateCalificacionCursosTable extends Migration
             $table->string('fecha');
             $table->timestamps();
 
-            $table->foreignId('id')->constrained('cursos');
-            $table->foreignId('id')->constrained('estudiantes');
+           // $table->foreignId('id')->constrained('cursos');
+            //$table->foreignId('id')->constrained('estudiantes');
         });
     }
 

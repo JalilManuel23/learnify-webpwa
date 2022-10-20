@@ -19,7 +19,7 @@ class CreateRolesTable extends Migration
             $table->string('key_name', 60);
             $table->timestamps();
 
-            $table->foreignId('role_id')->constrained('roles');
+           // $table->foreignId('role_id')->constrained('roles');
         });
     }
 
