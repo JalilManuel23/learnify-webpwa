@@ -5398,10 +5398,27 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
-  mounted: function mounted() {
-    console.log('Component mounted.');
+  props: {
+    roles: {
+      type: Object,
+      required: true
+    }
   }
 });
 
@@ -5434,8 +5451,8 @@ window.Vue = (__webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.esm.js
 // files.keys().map(key => Vue.component(key.split('/').pop().split('.')[0], files(key).default))
 
 Vue.component('example-component', (__webpack_require__(/*! ./components/ExampleComponent.vue */ "./resources/js/components/ExampleComponent.vue")["default"]));
-Vue.component('roles-component', (__webpack_require__(/*! ./components/RolesComponent.vue */ "./resources/js/components/RolesComponent.vue")["default"]));
 Vue.component('ejemplo-component', (__webpack_require__(/*! ./components/EjemploComponent.vue */ "./resources/js/components/EjemploComponent.vue")["default"]));
+Vue.component('roles-component', (__webpack_require__(/*! ./components/RolesComponent.vue */ "./resources/js/components/RolesComponent.vue")["default"]));
 
 /**
  * Next, we will create a fresh Vue application instance and attach it to
@@ -28461,14 +28478,38 @@ var render = function () {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _vm._m(0)
+  return _c("div", { staticClass: "container" }, [
+    _c("h1", [_vm._v("Roles")]),
+    _vm._v(" "),
+    _c("table", { staticClass: "table" }, [
+      _vm._m(0),
+      _vm._v(" "),
+      _c(
+        "tbody",
+        _vm._l(_vm.roles, function (role) {
+          return _c("tr", { key: role.id }, [
+            _c("td", [_vm._v(_vm._s(role.id))]),
+            _vm._v(" "),
+            _c("td", [_vm._v(_vm._s(role.name))]),
+          ])
+        }),
+        0
+      ),
+    ]),
+  ])
 }
 var staticRenderFns = [
   function () {
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("div", [_c("h1", [_vm._v("Roles")])])
+    return _c("thead", [
+      _c("tr", [
+        _c("th", [_vm._v("ID")]),
+        _vm._v(" "),
+        _c("th", [_vm._v("Name")]),
+      ]),
+    ])
   },
 ]
 render._withStripped = true

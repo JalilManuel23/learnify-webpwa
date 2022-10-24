@@ -11,10 +11,6 @@ class RoleController extends Controller
 {
     public function index() 
     {
-        // Conectar a model de Role y extraer todos sus datos
-        // $roles = Role::all()->toJson();
-        // $roles = Role::all()->toArray();
-        // dd($roles);
         $roles = Role::all();
 
         return view('ejemplo', compact('roles'));
