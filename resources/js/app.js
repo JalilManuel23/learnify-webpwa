@@ -23,6 +23,7 @@ Vue.component('example-component', require('./components/ExampleComponent.vue').
 Vue.component('ejemplo-component', require('./components/EjemploComponent.vue').default);
 Vue.component('roles-component', require('./components/RolesComponent.vue').default);
 Vue.component('usuarios-component', require('./components/UsuariosComponent.vue').default);
+Vue.component('estudiantes-component', require('./components/EstudiantesComponent.vue').default);
 
 /**
  * Next, we will create a fresh Vue application instance and attach it to
