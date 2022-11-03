@@ -1,6 +1,6 @@
 @extends('layouts.master-dashboard')
 @section('content')
     <div class="container-fluid">
-        <usuarios-component :usuarios="{{json_encode($usuarios)}}"></usuarios-component>
+        <roles-component :roles="{{json_encode($roles)}}"></roles-component>
     </div>
 @endsection

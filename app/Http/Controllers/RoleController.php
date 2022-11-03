@@ -13,7 +13,7 @@ class RoleController extends Controller
     {
         $roles = Role::all();
 
-        return view('ejemplo', compact('roles'));
+        return view('roles', compact('roles'));
     }
 
     public function save(RoleRequest $request)
