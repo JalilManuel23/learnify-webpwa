@@ -5437,6 +5437,98 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
+/* harmony import */ var bootstrap__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! bootstrap */ "./node_modules/bootstrap/dist/js/bootstrap.esm.js");
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 //
 //
 //
@@ -5458,11 +5550,72 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 
+
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   props: {
     roles: {
-      type: Object,
+      type: [Object, Array],
       required: true
+    }
+  },
+  data: function data() {
+    return {
+      rolesTable: this.roles,
+      Type: "add",
+      fields: {
+        id: "",
+        name: ""
+      }
+    };
+  },
+  mounted: function mounted() {
+    this.modal = new bootstrap__WEBPACK_IMPORTED_MODULE_0__.Modal(this.$refs.exampleModal);
+  },
+  methods: {
+    openModal: function openModal() {
+      this.modal.show();
+    },
+    closeModal: function closeModal() {
+      this.fields.name = "";
+      this.modal.hide();
+    },
+    addFormModal: function addFormModal() {
+      this.Type = "add";
+      this.fields.name = "";
+      this.openModal();
+    },
+    editFormModal: function editFormModal(role) {
+      this.Type = "edit";
+      this.fields.id = role.id;
+      this.fields.name = role.name;
+      this.openModal();
+    },
+    addUpdateElement: function addUpdateElement() {
+      var _this = this;
+      if (this.Type == "add") {
+        var count = this.rolesTable.length + 1;
+        this.rolesTable.push({
+          id: count,
+          name: this.fields.name
+        });
+      } else {
+        var upd_obj = this.rolesTable.findIndex(function (obj) {
+          return obj.id == _this.fields.id;
+        });
+        this.rolesTable[upd_obj].name = this.fields.name;
+      }
+      this.closeModal();
+    },
+    deleteUpdateElement: function deleteUpdateElement() {
+      Swal.fire({
+        text: "Toast with custom target",
+        target: "#custom-target",
+        customClass: {
+          container: "position-absolute"
+        },
+        toast: true,
+        position: "bottom-right"
+      });
     }
   }
 });
@@ -28774,10 +28927,29 @@ var render = function () {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", { staticClass: "container" }, [
-    _c("h1", [_vm._v("Roles")]),
+  return _c("div", {}, [
+    _c("div", { staticClass: "my-2" }, [
+      _c(
+        "button",
+        {
+          staticClass: "btn btn-success btn-md",
+          attrs: { type: "button" },
+          on: { click: _vm.addFormModal },
+        },
+        [
+          _c("i", { staticClass: "fas fa-fw fa-plus" }),
+          _vm._v("\n      Agregar\n    "),
+        ]
+      ),
+    ]),
     _vm._v(" "),
-    _c("table", { staticClass: "table" }, [
+    _c("div", {
+      ref: "exampleModal",
+      staticClass: "modal fade",
+      attrs: { "data-backdrop": "static", "data-backd": "" },
+    }),
+    _vm._v(" "),
+    _c("table", { staticClass: "table table-responsive-lg" }, [
       _vm._m(0),
       _vm._v(" "),
       _c(
@@ -28787,11 +28959,166 @@ var render = function () {
             _c("td", [_vm._v(_vm._s(role.id))]),
             _vm._v(" "),
             _c("td", [_vm._v(_vm._s(role.name))]),
+            _vm._v(" "),
+            _c("td", [
+              _c(
+                "button",
+                {
+                  staticClass: "btn btn-info btn-sm",
+                  attrs: { type: "button" },
+                  on: {
+                    click: function ($event) {
+                      return _vm.editFormModal(role)
+                    },
+                  },
+                },
+                [
+                  _c("i", { staticClass: "fas fa-fw fa-edit" }),
+                  _vm._v("\n            Editar\n          "),
+                ]
+              ),
+              _vm._v(" "),
+              _c(
+                "button",
+                {
+                  staticClass: "btn btn-danger btn-sm",
+                  attrs: { type: "button" },
+                  on: {
+                    click: function ($event) {
+                      return _vm.deleteFormModal(role.id)
+                    },
+                  },
+                },
+                [
+                  _c("i", { staticClass: "fas fa-fw fa-trash" }),
+                  _vm._v("\n            Eliminar\n          "),
+                ]
+              ),
+            ]),
           ])
         }),
         0
       ),
     ]),
+    _vm._v(" "),
+    _c(
+      "div",
+      {
+        ref: "exampleModal",
+        staticClass: "modal fade",
+        attrs: {
+          "data-backdrop": "static",
+          "data-keyboard": "false",
+          tabindex: "-1",
+          role: "dialog",
+          "aria-labelledby": "exampleModalCenterTitle",
+          "aria-hidden": "true",
+        },
+      },
+      [
+        _c(
+          "div",
+          {
+            staticClass: "modal-dialog modal-dialog-centered",
+            attrs: { role: "document" },
+          },
+          [
+            _c("div", { staticClass: "modal-content" }, [
+              _c("div", { staticClass: "modal-header" }, [
+                _c(
+                  "h5",
+                  {
+                    staticClass: "modal-title",
+                    attrs: { id: "exampleModalLongTitle" },
+                  },
+                  [
+                    _vm.Type == "add"
+                      ? _c("span", [_vm._v("Agregar rol")])
+                      : _vm.Type == "edit"
+                      ? _c("span", [_vm._v("Editar rol")])
+                      : _vm._e(),
+                  ]
+                ),
+                _vm._v(" "),
+                _c(
+                  "button",
+                  {
+                    staticClass: "close",
+                    attrs: { type: "button", "aria-label": "Close" },
+                    on: { click: _vm.closeModal },
+                  },
+                  [
+                    _c("span", { attrs: { "aria-hidden": "true" } }, [
+                      _vm._v("×"),
+                    ]),
+                  ]
+                ),
+              ]),
+              _vm._v(" "),
+              _c("div", { staticClass: "modal-body" }, [
+                _c("form", { attrs: { action: "" } }, [
+                  _c("div", { staticClass: "mb-3" }, [
+                    _c(
+                      "label",
+                      { staticClass: "form-label", attrs: { for: "name" } },
+                      [_vm._v("Name")]
+                    ),
+                    _vm._v(" "),
+                    _c("input", {
+                      directives: [
+                        {
+                          name: "model",
+                          rawName: "v-model",
+                          value: _vm.fields.name,
+                          expression: "fields.name",
+                        },
+                      ],
+                      staticClass: "form-control",
+                      attrs: {
+                        type: "email",
+                        id: "name",
+                        "aria-describedby": "nombre",
+                      },
+                      domProps: { value: _vm.fields.name },
+                      on: {
+                        input: function ($event) {
+                          if ($event.target.composing) {
+                            return
+                          }
+                          _vm.$set(_vm.fields, "name", $event.target.value)
+                        },
+                      },
+                    }),
+                  ]),
+                ]),
+              ]),
+              _vm._v(" "),
+              _c("div", { staticClass: "modal-footer" }, [
+                _c(
+                  "button",
+                  {
+                    staticClass: "btn btn-secondary",
+                    attrs: { type: "button" },
+                    on: { click: _vm.closeModal },
+                  },
+                  [_vm._v("\n            Close\n          ")]
+                ),
+                _vm._v(" "),
+                _c(
+                  "button",
+                  {
+                    staticClass: "btn btn-primary",
+                    attrs: { type: "button" },
+                    on: { click: _vm.addUpdateElement },
+                  },
+                  [_vm._v("\n            Guardar\n          ")]
+                ),
+              ]),
+            ]),
+          ]
+        ),
+      ]
+    ),
   ])
 }
 var staticRenderFns = [
@@ -28803,7 +29130,9 @@ var staticRenderFns = [
       _c("tr", [
         _c("th", [_vm._v("ID")]),
         _vm._v(" "),
-        _c("th", [_vm._v("Name")]),
+        _c("th", [_vm._v("Nombre")]),
+        _vm._v(" "),
+        _c("th", [_vm._v("Acciones")]),
       ]),
     ])
   },
