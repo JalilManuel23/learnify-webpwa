@@ -82,7 +82,7 @@
               <div class="mb-3">
                 <label for="name" class="form-label">Name</label>
                 <input
-                  type="email"
+                  type="text"
                   v-model="fields.name"
                   class="form-control"
                   id="name"
@@ -110,7 +110,9 @@
 </template>
 
 <script>
+import axios from "axios";
 import { Modal } from "bootstrap";
+import { response } from "express";
 
 export default {
   props: {
@@ -155,6 +157,15 @@ export default {
     addUpdateElement() {
       if (this.Type == "add") {
         let count = this.rolesTable.length + 1;
+        var formdata = new formData();
+        fordata.append('name', this.fields.name);
+        axios.post('agregar-rol', formdata)
+          .then(response => {
+            console.log(response);
+          })
+          .catch( error => {
+            console.log(error);
+          });
         this.rolesTable.push({ id: count, name: this.fields.name });
       } else {
         let upd_obj = this.rolesTable.findIndex(
