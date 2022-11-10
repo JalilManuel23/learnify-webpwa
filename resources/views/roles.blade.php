@@ -9,9 +9,5 @@
             <roles-component :roles="{{json_encode($roles)}}"></roles-component>
         </div>
     </div>
-
-
-
- 
 </div>
 @endsection

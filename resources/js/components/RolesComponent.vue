@@ -87,6 +87,7 @@
                   class="form-control"
                   id="name"
                   aria-describedby="nombre"
+                  name="name"
                 />
               </div>
             </form>
@@ -112,7 +113,6 @@
 <script>
 import axios from "axios";
 import { Modal } from "bootstrap";
-import { response } from "express";
 
 export default {
   props: {
@@ -127,7 +127,7 @@ export default {
       Type: "add",
       fields: {
         id: "",
-        name: "",
+        name: ""
       },
     };
   },
@@ -157,9 +157,10 @@ export default {
     addUpdateElement() {
       if (this.Type == "add") {
         let count = this.rolesTable.length + 1;
-        var formdata = new formData();
-        fordata.append('name', this.fields.name);
-        axios.post('agregar-rol', formdata)
+        var formdata = new FormData();
+        formdata.append('name', this.fields.name);
+        formdata.append('key_name', this.fields.key_name);
+        axios.post('/agregar-rol', formdata)
           .then(response => {
             console.log(response);
           })

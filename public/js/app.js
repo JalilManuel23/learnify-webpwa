@@ -5437,7 +5437,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
-/* harmony import */ var bootstrap__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! bootstrap */ "./node_modules/bootstrap/dist/js/bootstrap.esm.js");
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var bootstrap__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! bootstrap */ "./node_modules/bootstrap/dist/js/bootstrap.esm.js");
 //
 //
 //
@@ -5549,6 +5551,8 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+
 
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
@@ -5569,7 +5573,7 @@ __webpack_require__.r(__webpack_exports__);
     };
   },
   mounted: function mounted() {
-    this.modal = new bootstrap__WEBPACK_IMPORTED_MODULE_0__.Modal(this.$refs.exampleModal);
+    this.modal = new bootstrap__WEBPACK_IMPORTED_MODULE_1__.Modal(this.$refs.exampleModal);
   },
   methods: {
     openModal: function openModal() {
@@ -5594,6 +5598,14 @@ __webpack_require__.r(__webpack_exports__);
       var _this = this;
       if (this.Type == "add") {
         var count = this.rolesTable.length + 1;
+        var formdata = new FormData();
+        formdata.append('name', this.fields.name);
+        formdata.append('key_name', this.fields.key_name);
+        axios__WEBPACK_IMPORTED_MODULE_0___default().post('/agregar-rol', formdata).then(function (response) {
+          console.log(response);
+        })["catch"](function (error) {
+          console.log(error);
+        });
         this.rolesTable.push({
           id: count,
           name: this.fields.name
@@ -5681,6 +5693,7 @@ __webpack_require__.r(__webpack_exports__);
 
 __webpack_require__(/*! ./bootstrap */ "./resources/js/bootstrap.js");
 window.Vue = (__webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.esm.js")["default"]);
+window.axios = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
 
 /**
  * The following block of code may be used to automatically register your
@@ -29075,9 +29088,10 @@ var render = function () {
                       ],
                       staticClass: "form-control",
                       attrs: {
-                        type: "email",
+                        type: "text",
                         id: "name",
                         "aria-describedby": "nombre",
+                        name: "name",
                       },
                       domProps: { value: _vm.fields.name },
                       on: {
@@ -41284,6 +41298,18 @@ module.exports = JSON.parse('{"name":"axios","version":"0.21.4","description":"P
 /******/ 				}
 /******/ 			}
 /******/ 			return result;
+/******/ 		};
+/******/ 	})();
+/******/ 	
+/******/ 	/* webpack/runtime/compat get default export */
+/******/ 	(() => {
+/******/ 		// getDefaultExport function for compatibility with non-harmony modules
+/******/ 		__webpack_require__.n = (module) => {
+/******/ 			var getter = module && module.__esModule ?
+/******/ 				() => (module['default']) :
+/******/ 				() => (module);
+/******/ 			__webpack_require__.d(getter, { a: getter });
+/******/ 			return getter;
 /******/ 		};
 /******/ 	})();
 /******/ 	

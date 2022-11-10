@@ -25,3 +25,5 @@ Route::get('/ejemplo', [App\Http\Controllers\RoleController::class, 'index'])->n
 Route::get('/usuarios', [App\Http\Controllers\UserController::class, 'index'])->name('usuarios');
 Route::get('/roles', [App\Http\Controllers\RoleController::class, 'index'])->name('roles');
 Route::get('/estudiantes', [App\Http\Controllers\EstudianteController::class, 'index'])->name('estudiantes');
+
+Route::post('/agregar-rol', [App\Http\Controllers\RoleController::class, 'save']);
