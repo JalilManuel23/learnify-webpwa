@@ -29,3 +29,8 @@ Route::get('/estudiantes', [App\Http\Controllers\EstudianteController::class, 'i
 Route::post('/agregar-rol', [App\Http\Controllers\RoleController::class, 'save']);
 Route::post('/actualizar-rol/{id}', [App\Http\Controllers\RoleController::class, 'update']);
 Route::post('/eliminar-rol/{id}', [App\Http\Controllers\RoleController::class, 'delete']);
+
+//USUARIOS
+Route::post('/agregar-usuario', [App\Http\Controllers\UserController::class, 'save']);
+Route::post('/actualizar-usuario/{id}', [App\Http\Controllers\UserController::class, 'update']);
+Route::post('/eliminar-usuario/{id}', [App\Http\Controllers\UserController::class, 'delete']);
