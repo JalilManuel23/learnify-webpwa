@@ -25,6 +25,7 @@ Route::get('/usuarios', [App\Http\Controllers\UserController::class, 'index'])->
 Route::get('/roles', [App\Http\Controllers\RoleController::class, 'index'])->name('roles');
 Route::get('/estudiantes', [App\Http\Controllers\EstudianteController::class, 'index'])->name('estudiantes');
 Route::get('/cursos', [App\Http\Controllers\CursoController::class, 'index'])->name('cursos');
+Route::get('/categorias', [App\Http\Controllers\CategoriaController::class, 'index'])->name('categorias');
 
 Route::post('/agregar-rol', [App\Http\Controllers\RoleController::class, 'save']);
 Route::post('/actualizar-rol/{id}', [App\Http\Controllers\RoleController::class, 'update']);
@@ -44,3 +45,8 @@ Route::post('/actualizar-estudiante/{id}', [App\Http\Controllers\EstudianteContr
 Route::post('/agregar-curso', [App\Http\Controllers\CursoController::class, 'save']);
 Route::post('/actualizar-curso/{id}', [App\Http\Controllers\CursoController::class, 'update']);
 Route::post('/eliminar-curso/{id}', [App\Http\Controllers\CursoController::class, 'delete']);
+
+// CATEGORIAS
+Route::post('/agregar-categoria', [App\Http\Controllers\CategoriaController::class, 'save']);
+Route::post('/actualizar-categoria/{id}', [App\Http\Controllers\CategoriaController::class, 'update']);
+Route::post('/eliminar-categoria/{id}', [App\Http\Controllers\CategoriaController::class, 'delete']);
