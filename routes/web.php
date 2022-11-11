@@ -24,17 +24,23 @@ Route::get('/ejemplo', [App\Http\Controllers\RoleController::class, 'index'])->n
 Route::get('/usuarios', [App\Http\Controllers\UserController::class, 'index'])->name('usuarios');
 Route::get('/roles', [App\Http\Controllers\RoleController::class, 'index'])->name('roles');
 Route::get('/estudiantes', [App\Http\Controllers\EstudianteController::class, 'index'])->name('estudiantes');
+Route::get('/cursos', [App\Http\Controllers\CursoController::class, 'index'])->name('cursos');
 
 Route::post('/agregar-rol', [App\Http\Controllers\RoleController::class, 'save']);
 Route::post('/actualizar-rol/{id}', [App\Http\Controllers\RoleController::class, 'update']);
 Route::post('/eliminar-rol/{id}', [App\Http\Controllers\RoleController::class, 'delete']);
 
-//USUARIOS
+// USUARIOS
 Route::post('/agregar-usuario', [App\Http\Controllers\UserController::class, 'save']);
 Route::post('/actualizar-usuario/{id}', [App\Http\Controllers\UserController::class, 'update']);
 Route::post('/eliminar-usuario/{id}', [App\Http\Controllers\UserController::class, 'delete']);
 
-//ESTUDIANTES
+// ESTUDIANTES
 Route::post('/agregar-estudiante', [App\Http\Controllers\EstudianteController::class, 'save']);
 Route::post('/actualizar-estudiante/{id}', [App\Http\Controllers\EstudianteController::class, 'update']);
 //Route::post('/eliminar-estudiante/{id}', [App\Http\Controllers\EstudianteController::class, 'delete']);
+
+// CURSOS
+Route::post('/agregar-curso', [App\Http\Controllers\CursoController::class, 'save']);
+Route::post('/actualizar-curso/{id}', [App\Http\Controllers\CursoController::class, 'update']);
+Route::post('/eliminar-curso/{id}', [App\Http\Controllers\CursoController::class, 'delete']);

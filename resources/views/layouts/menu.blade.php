@@ -71,7 +71,7 @@
 
     <!-- Nav Item - Cursos -->
     <li class="nav-item">
-        <a class="nav-link" href="{{ url ('')}}">
+        <a class="nav-link" href="{{ url ('cursos')}}">
             <i class="fas fa-fw fa-play"></i>
             <span>Cursos</span></a>
     </li>

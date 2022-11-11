@@ -1,0 +1,345 @@
+<template>
+    <div class="">
+        <div class="my-2">
+            <button type="button" class="btn btn-success btn-md" @click="addFormModal">
+                <i class="fas fa-fw fa-plus"></i>
+                Agregar
+            </button>
+        </div>
+
+        <div class="modal fade" ref="exampleModal" data-backdrop="static" data-backd></div>
+
+        <table class="table table-responsive-lg">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Titulo</th>
+                    <th>Instructor</th>
+                    <th>Categoria</th>
+                    <th>Duracion</th>
+                    <th>Precio</th>
+                    <th>Acciones</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr v-for="curso in cursos" :key="curso.id">
+                    <td>{{ curso.id }}</td>
+                    <th>{{ curso.titulo }}</th>
+                    <th>{{ curso.instructor }}</th>
+                    <th>{{ curso.categoria }}</th>
+                    <th>{{ curso.duracion }}</th>
+                    <th>{{ curso.precio }}</th>
+                    <td>
+                        <button type="button" class="btn btn-info btn-sm" @click="editFormModal(curso)">
+                            <i class="fas fa-fw fa-edit"></i>
+                            Editar
+                        </button>
+                        <button type="button" class="btn btn-danger btn-sm" @click="deleteFormModal(curso)">
+                            <i class="fas fa-fw fa-trash"></i>
+                            Eliminar
+                        </button>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <div class="modal fade" ref="exampleModal" data-backdrop="static" data-keyboard="false" tabindex="-1"
+            role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLongTitle">
+                            <span v-if="Type == 'add'">Agregar rol</span>
+                            <span v-else-if="Type == 'edit'">Editar rol</span>
+                        </h5>
+                        <button type="button" class="close" @click="closeModal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <form action="" id="formulario">
+                            <div class="mb-3">
+                                <input type="hidden" :value="fields.id" />
+
+                                <label for="titulo" class="form-label">Titulo</label>
+                                <input type="text" v-model="fields.titulo" class="form-control" id="titulo"
+                                    aria-describedby="titulo" name="titulo" />
+
+                                <label for="instructor" class="form-label">Instructor</label>
+                                <input type="text" v-model="fields.instructor" class="form-control" id="instructor"
+                                    aria-describedby="instructor" name="instructor" />
+
+                                <label for="categoria" class="form-label">Categoría</label>
+                                <input type="text" v-model="fields.categoria" class="form-control" id="categoria"
+                                    aria-describedby="categoria" name="categoria" />
+
+                                <label for="duracion" class="form-label">Duración</label>
+                                <input type="text" v-model="fields.duracion" class="form-control" id="duracion"
+                                    aria-describedby="duracion" name="duracion" />
+
+                                <label for="descripcion" class="form-label">Descripción</label>
+                                <input type="text" v-model="fields.descripcion" class="form-control" id="descripcion"
+                                    aria-describedby="descripcion" name="descripcion" />
+
+                                <label for="precio" class="form-label">Precio</label>
+                                <input type="number" v-model="fields.precio" class="form-control" id="precio"
+                                    aria-describedby="precio" name="precio" />
+                            </div>
+                        </form>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" @click="closeModal">
+                            Close
+                        </button>
+                        <button type="button" class="btn btn-primary" @click="addUpdateElement">
+                            Guardar
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</template>
+  
+<script>
+import axios from "axios";
+import { Modal } from "bootstrap";
+
+export default {
+    props: {
+        cursos: {
+            type: [Object, Array],
+            required: true,
+        },
+    },
+    data() {
+        return {
+            cursosTable: this.cursos,
+            Type: "add",
+            fields: {
+                id: "",
+                instructor: "",
+                categoria: "",
+                duracion: "",
+                titulo: "",
+                descripcion: "",
+                precio: "",
+            },
+        };
+    },
+
+    mounted() {
+        this.modal = new Modal(this.$refs.exampleModal);
+    },
+    methods: {
+        openModal() {
+            this.modal.show();
+        },
+        closeModal() {
+            this.fields.name = "";
+            this.fields.instructor = "",
+            this.fields.categoria = "",
+            this.fields.duracion = "",
+            this.fields.titulo = "",
+            this.fields.descripcion = "",
+            this.fields.precio = "",
+            this.modal.hide();
+        },
+        addFormModal() {
+            this.Type = "add";
+            this.fields.name = "";
+            this.fields.instructor = "",
+            this.fields.categoria = "",
+            this.fields.duracion = "",
+            this.fields.titulo = "",
+            this.fields.descripcion = "",
+            this.fields.precio = "",
+            this.openModal();
+        },
+        editFormModal(curso) {
+            this.Type = "edit";
+            this.fields.id          = curso.id;
+            this.fields.instructor  = curso.instructor,
+            this.fields.categoria   = curso.categoria,
+            this.fields.duracion    = curso.duracion,
+            this.fields.titulo      = curso.titulo,
+            this.fields.descripcion = curso.descripcion,
+            this.fields.precio      = curso.precio,
+            this.openModal();
+        },
+        deleteFormModal(curso) {
+            this.fields.id = curso.id;
+            axios
+                .post("/eliminar-curso/" + this.fields.id)
+                .then((response) => {
+                    if (response.status == 200) {
+                        Swal.fire({
+                            toast: true,
+                            icon: "success",
+                            iconColor: "white",
+                            title:
+                                '<h1 style="color:white; font-size:1.4rem !important;">El registro ha sido eliminado con éxito</h1>',
+                            animation: false,
+                            timerProgressBar: true,
+                            position: "top-right",
+                            background: "#a5dc86",
+                            showConfirmButton: false,
+                            timer: 3000,
+                            didOpen: (toast) => {
+                                toast.addEventListener("mouseenter", Swal.stopTimer);
+                                toast.addEventListener("mouseleave", Swal.resumeTimer);
+                            },
+                        });
+                    }
+                    console.log(response);
+                })
+                .catch((error) => {
+                    Swal.fire({
+                        toast: true,
+                        icon: "error",
+                        iconColor: "white",
+                        title:
+                            '<h1 style="color:white; font-size:1.4rem !important;">La petición ha fallado</h1>',
+                        animation: false,
+                        timerProgressBar: true,
+
+                        position: "top-right",
+                        background: "#f27474",
+                        showConfirmButton: false,
+                        timer: 3000,
+                        didOpen: (toast) => {
+                            toast.addEventListener("mouseenter", Swal.stopTimer);
+                            toast.addEventListener("mouseleave", Swal.resumeTimer);
+                        },
+                    });
+                    console.log(error);
+                });
+        },
+        addUpdateElement() {
+            var form = document.getElementById("formulario");
+            var formdata = new FormData(form);
+            if (this.Type == "add") {
+                let count = this.cursosTable.length + 1;
+                formdata.append("instructor",this.fields.instructor);
+                formdata.append("categoria",this.fields.categoria); 
+                formdata.append("duracion",this.fields.duracion); 
+                formdata.append("titulo",this.fields.titulo); 
+                formdata.append("descripcion",this.fields.descripcion); 
+                formdata.append("precio",this.fields.precio);   
+                axios
+                    .post("/agregar-curso", formdata)
+                    .then((response) => {
+                        if (response.status == 200) {
+                            Swal.fire({
+                                toast: true,
+                                icon: "success",
+                                iconColor: "white",
+                                title:
+                                    '<h1 style="color:white; font-size:1.4rem !important;">El registro ha sido agregado con éxito</h1>',
+                                animation: false,
+                                timerProgressBar: true,
+
+                                position: "top-right",
+                                background: "#a5dc86",
+                                showConfirmButton: false,
+                                timer: 3000,
+                                didOpen: (toast) => {
+                                    toast.addEventListener("mouseenter", Swal.stopTimer);
+                                    toast.addEventListener("mouseleave", Swal.resumeTimer);
+                                },
+                            });
+                        }
+                        console.log(response);
+                    })
+                    .catch((error) => {
+                        Swal.fire({
+                            toast: true,
+                            icon: "error",
+                            iconColor: "white",
+                            title:
+                                '<h1 style="color:white; font-size:1.4rem !important;">La petición ha fallado</h1>',
+                            animation: false,
+                            timerProgressBar: true,
+
+                            position: "top-right",
+                            background: "#f27474",
+                            showConfirmButton: false,
+                            timer: 3000,
+                            didOpen: (toast) => {
+                                toast.addEventListener("mouseenter", Swal.stopTimer);
+                                toast.addEventListener("mouseleave", Swal.resumeTimer);
+                            },
+                        });
+                        console.log(error);
+                    });
+                this.cursosTable.push({
+                        id: count, 
+                        instructor: this.fields.instructor,
+                        categoria: this.fields.categoria,
+                        duracion: this.fields.duracion,
+                        titulo: this.fields.titulo,
+                        descripcion: this.fields.descripcion,
+                        precio: this.fields.precio
+                    });     
+            } else {
+                let upd_obj = this.cursosTable.findIndex(
+                    (obj) => obj.id == this.fields.id
+                );
+                this.cursosTable[upd_obj].id = this.fields.id;
+                this.cursosTable[upd_obj].instructor = this.fields.instructor;
+                this.cursosTable[upd_obj].categoria = this.fields.categoria;
+                this.cursosTable[upd_obj].duracion = this.fields.duracion;
+                this.cursosTable[upd_obj].titulo = this.fields.titulo;
+                this.cursosTable[upd_obj].descripcion = this.fields.descripcion;
+                this.cursosTable[upd_obj].precio = this.fields.precio;
+                axios
+                    .post("/actualizar-curso/" + this.fields.id, formdata)
+                    .then((response) => {
+                        if (response.status == 200) {
+                            Swal.fire({
+                                toast: true,
+                                icon: "success",
+                                iconColor: "white",
+                                title:
+                                    '<h1 style="color:white; font-size:1.4rem !important;">El registro ha sido editado con éxito</h1>',
+                                animation: false,
+                                timerProgressBar: true,
+
+                                position: "top-right",
+                                background: "#a5dc86",
+                                showConfirmButton: false,
+                                timer: 3000,
+                                didOpen: (toast) => {
+                                    toast.addEventListener("mouseenter", Swal.stopTimer);
+                                    toast.addEventListener("mouseleave", Swal.resumeTimer);
+                                },
+                            });
+                        }
+                        console.log(response);
+                    })
+                    .catch((error) => {
+                        Swal.fire({
+                            toast: true,
+                            icon: "error",
+                            iconColor: "white",
+                            title:
+                                '<h1 style="color:white; font-size:1.4rem !important;">La petición ha fallado</h1>',
+                            animation: false,
+                            timerProgressBar: true,
+
+                            position: "top-right",
+                            background: "#f27474",
+                            showConfirmButton: false,
+                            timer: 3000,
+                            didOpen: (toast) => {
+                                toast.addEventListener("mouseenter", Swal.stopTimer);
+                                toast.addEventListener("mouseleave", Swal.resumeTimer);
+                            },
+                        });
+                        console.log(error);
+                    });
+            }
+            this.closeModal();
+        },
+    },
+};
+</script>

@@ -9,7 +9,7 @@ use App\Http\Requests\RoleRequest;
 
 class RoleController extends Controller
 {
-    public function index() 
+    public function index()
     {
         $roles = Role::all();
 
@@ -38,7 +38,7 @@ class RoleController extends Controller
 
     public function delete(Request $request)
     {
-    $role = Role::find($request->id);
-    $role->delete();
- }
+        $role = Role::find($request->id);
+        $role->delete();
+    }
 }
