@@ -18,24 +18,27 @@ class EstudianteController extends Controller
 
     public function save(EstudianteRequest $request)
     {
-        $estudiantes = new Estudiante;
-        $estudiantes->name = $request->name;
-        $estudiantes->key_name = Str::slug($request->name);
-        $estudiantes->save();
+        $estudiante = new Estudiante;
+        $estudiante->nombre = $request->nombre;
+        $estudiante->save();
 
         return redirect('estudiantes');
     }
 
     public function update($id)
     {
-        $estudiantes = Estudiante::find($id);
-        $estudiantes->name = '';
-        $estudiantes->key_name = '';
-        $estudiantes->save();
+        $estudiante = Estudiante::find($id);
+        $estudiante->nombre = '';
+        $estudiante->save();
+
+        return redirect('estudiantes');
     }
 
-    public function delete($id)
+    public function delete(Request $request)
     {
-        Estudiante::find($id)->delete();
+        $estudiante = Estudiante::find($request->id);
+        $estudiante->delete();
+
+        return redirect('estudiantes');
     }
 }

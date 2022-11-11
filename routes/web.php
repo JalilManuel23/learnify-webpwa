@@ -34,3 +34,7 @@ Route::post('/agregar-usuario', [App\Http\Controllers\UserController::class, 'sa
 Route::post('/actualizar-usuario/{id}', [App\Http\Controllers\UserController::class, 'update']);
 Route::post('/eliminar-usuario/{id}', [App\Http\Controllers\UserController::class, 'delete']);
 
+//ESTUDIANTES
+Route::post('/agregar-estudiante', [App\Http\Controllers\EstudianteController::class, 'save']);
+Route::post('/actualizar-estudiante/{id}', [App\Http\Controllers\EstudianteController::class, 'update']);
+//Route::post('/eliminar-estudiante/{id}', [App\Http\Controllers\EstudianteController::class, 'delete']);

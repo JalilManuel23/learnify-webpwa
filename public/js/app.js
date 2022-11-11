@@ -5356,6 +5356,74 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var bootstrap__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! bootstrap */ "./node_modules/bootstrap/dist/js/bootstrap.esm.js");
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 //
 //
 //
@@ -5379,11 +5447,186 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 
+
+
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   props: {
     estudiantes: {
-      type: Object,
+      type: Array,
       required: true
+    }
+  },
+  data: function data() {
+    return {
+      estudiantesTable: this.estudiantes,
+      Type: "add",
+      fields: {
+        id: "",
+        nombre: ""
+      }
+    };
+  },
+  mounted: function mounted() {
+    this.modal = new bootstrap__WEBPACK_IMPORTED_MODULE_1__.Modal(this.$refs.exampleModal);
+  },
+  methods: {
+    openModal: function openModal() {
+      this.modal.show();
+    },
+    closeModal: function closeModal() {
+      this.fields.nombre = "";
+      this.modal.hide();
+    },
+    addFormModal: function addFormModal() {
+      this.Type = "add";
+      this.fields.nombre = "";
+      this.openModal();
+    },
+    editFormModal: function editFormModal(estudiante) {
+      this.Type = "edit";
+      this.fields.id = estudiante.id;
+      this.fields.nombre = estudiante.nombre;
+      this.openModal();
+    },
+    deleteFormModal: function deleteFormModal(estudiante) {
+      this.fields.id = estudiante.id;
+      axios__WEBPACK_IMPORTED_MODULE_0___default().post("/eliminar-estudiante/" + this.fields.id).then(function (response) {
+        if (response.status == 200) {
+          Swal.fire({
+            toast: true,
+            icon: "success",
+            iconColor: "white",
+            title: '<h1 style="color:white; font-size:1.4rem !important;">El registro ha sido eliminado con éxito</h1>',
+            animation: false,
+            timerProgressBar: true,
+            position: "top-right",
+            background: "#a5dc86",
+            showConfirmButton: false,
+            timer: 3000,
+            didOpen: function didOpen(toast) {
+              toast.addEventListener("mouseenter", Swal.stopTimer);
+              toast.addEventListener("mouseleave", Swal.resumeTimer);
+            }
+          });
+        }
+        console.log(response);
+      })["catch"](function (error) {
+        Swal.fire({
+          toast: true,
+          icon: "error",
+          iconColor: "white",
+          title: '<h1 style="color:white; font-size:1.4rem !important;">La petición ha fallado</h1>',
+          animation: false,
+          timerProgressBar: true,
+          position: "top-right",
+          background: "#f27474",
+          showConfirmButton: false,
+          timer: 3000,
+          didOpen: function didOpen(toast) {
+            toast.addEventListener("mouseenter", Swal.stopTimer);
+            toast.addEventListener("mouseleave", Swal.resumeTimer);
+          }
+        });
+        console.log(error);
+      });
+    },
+    addUpdateElement: function addUpdateElement() {
+      var _this = this;
+      var form = document.getElementById("formulario");
+      var formdata = new FormData(form);
+      if (this.Type == "add") {
+        var count = this.estudiantesTable.length + 1;
+        formdata.append("nombre", this.fields.nombre);
+        axios__WEBPACK_IMPORTED_MODULE_0___default().post("/agregar-estudiante", formdata).then(function (response) {
+          if (response.status == 200) {
+            Swal.fire({
+              toast: true,
+              icon: "success",
+              iconColor: "white",
+              title: '<h1 style="color:white; font-size:1.4rem !important;">El registro ha sido agregado con éxito</h1>',
+              animation: false,
+              timerProgressBar: true,
+              position: "top-right",
+              background: "#a5dc86",
+              showConfirmButton: false,
+              timer: 3000,
+              didOpen: function didOpen(toast) {
+                toast.addEventListener("mouseenter", Swal.stopTimer);
+                toast.addEventListener("mouseleave", Swal.resumeTimer);
+              }
+            });
+          }
+          console.log(response);
+        })["catch"](function (error) {
+          Swal.fire({
+            toast: true,
+            icon: "error",
+            iconColor: "white",
+            title: '<h1 style="color:white; font-size:1.4rem !important;">La petición ha fallado</h1>',
+            animation: false,
+            timerProgressBar: true,
+            position: "top-right",
+            background: "#f27474",
+            showConfirmButton: false,
+            timer: 3000,
+            didOpen: function didOpen(toast) {
+              toast.addEventListener("mouseenter", Swal.stopTimer);
+              toast.addEventListener("mouseleave", Swal.resumeTimer);
+            }
+          });
+          console.log(error);
+        });
+        this.estudiantesTable.push({
+          id: count,
+          nombre: this.fields.nombre
+        });
+      } else {
+        var upd_obj = this.estudiantesTable.findIndex(function (obj) {
+          return obj.id == _this.fields.id;
+        });
+        this.estudiantesTable[upd_obj].id = this.fields.id;
+        this.estudiantesTable[upd_obj].nombre = this.fields.nombre;
+        axios__WEBPACK_IMPORTED_MODULE_0___default().post("/actualizar-estudiante/" + this.fields.id, formdata).then(function (response) {
+          if (response.status == 200) {
+            Swal.fire({
+              toast: true,
+              icon: "success",
+              iconColor: "white",
+              title: '<h1 style="color:white; font-size:1.4rem !important;">El registro ha sido editado con éxito</h1>',
+              animation: false,
+              timerProgressBar: true,
+              position: "top-right",
+              background: "#a5dc86",
+              showConfirmButton: false,
+              timer: 3000,
+              didOpen: function didOpen(toast) {
+                toast.addEventListener("mouseenter", Swal.stopTimer);
+                toast.addEventListener("mouseleave", Swal.resumeTimer);
+              }
+            });
+          }
+          console.log(response);
+        })["catch"](function (error) {
+          Swal.fire({
+            toast: true,
+            icon: "error",
+            iconColor: "white",
+            title: '<h1 style="color:white; font-size:1.4rem !important;">La petición ha fallado</h1>',
+            animation: false,
+            timerProgressBar: true,
+            position: "top-right",
+            background: "#f27474",
+            showConfirmButton: false,
+            timer: 3000,
+            didOpen: function didOpen(toast) {
+              toast.addEventListener("mouseenter", Swal.stopTimer);
+              toast.addEventListener("mouseleave", Swal.resumeTimer);
+            }
+          });
+          console.log(error);
+        });
+      }
+      this.closeModal();
     }
   }
 });
@@ -28818,7 +29061,7 @@ process.umask = function() { return 0; };
 /***/ (function(module) {
 
 /*!
-* sweetalert2 v11.6.8
+* sweetalert2 v11.6.5
 * Released under the MIT License.
 */
 (function (global, factory) {
@@ -28856,7 +29099,7 @@ process.umask = function() { return 0; };
     }
     return result;
   };
-  const swalClasses = prefix(['container', 'shown', 'height-auto', 'iosfix', 'popup', 'modal', 'no-backdrop', 'no-transition', 'toast', 'toast-shown', 'show', 'hide', 'close', 'title', 'html-container', 'actions', 'confirm', 'deny', 'cancel', 'default-outline', 'footer', 'icon', 'icon-content', 'image', 'input', 'file', 'range', 'select', 'radio', 'checkbox', 'label', 'textarea', 'inputerror', 'input-label', 'validation-message', 'progress-steps', 'active-progress-step', 'progress-step', 'progress-step-line', 'loader', 'loading', 'styled', 'top', 'top-start', 'top-end', 'top-left', 'top-right', 'center', 'center-start', 'center-end', 'center-left', 'center-right', 'bottom', 'bottom-start', 'bottom-end', 'bottom-left', 'bottom-right', 'grow-row', 'grow-column', 'grow-fullscreen', 'rtl', 'timer-progress-bar', 'timer-progress-bar-container', 'scrollbar-measure', 'icon-success', 'icon-warning', 'icon-info', 'icon-question', 'icon-error']);
+  const swalClasses = prefix(['container', 'shown', 'height-auto', 'iosfix', 'popup', 'modal', 'no-backdrop', 'no-transition', 'toast', 'toast-shown', 'show', 'hide', 'close', 'title', 'html-container', 'actions', 'confirm', 'deny', 'cancel', 'default-outline', 'footer', 'icon', 'icon-content', 'image', 'input', 'file', 'range', 'select', 'radio', 'checkbox', 'label', 'textarea', 'inputerror', 'input-label', 'validation-message', 'progress-steps', 'active-progress-step', 'progress-step', 'progress-step-line', 'loader', 'loading', 'styled', 'top', 'top-start', 'top-end', 'top-left', 'top-right', 'center', 'center-start', 'center-end', 'center-left', 'center-right', 'bottom', 'bottom-start', 'bottom-end', 'bottom-left', 'bottom-right', 'grow-row', 'grow-column', 'grow-fullscreen', 'rtl', 'timer-progress-bar', 'timer-progress-bar-container', 'scrollbar-measure', 'icon-success', 'icon-warning', 'icon-info', 'icon-question', 'icon-error', 'no-war']);
   const iconTypes = prefix(['success', 'warning', 'info', 'question', 'error']);
 
   const consolePrefix = 'SweetAlert2:';
@@ -29287,7 +29530,7 @@ process.umask = function() { return 0; };
    *
    * @param {HTMLElement} elem
    * @param {string} className
-   * @returns {HTMLElement | undefined}
+   * @returns {HTMLElement | null}
    */
   const getDirectChildByClass = (elem, className) => {
     const children = Array.from(elem.children);
@@ -32740,7 +32983,7 @@ process.umask = function() { return 0; };
     };
   });
   SweetAlert.DismissReason = DismissReason;
-  SweetAlert.version = '11.6.8';
+  SweetAlert.version = '11.6.5';
 
   const Swal = SweetAlert;
   // @ts-ignore
@@ -33166,7 +33409,26 @@ var render = function () {
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _c("div", { staticClass: "container" }, [
-    _c("h1", [_vm._v("Estudiantes")]),
+    _c("div", { staticClass: "my-2" }, [
+      _c(
+        "button",
+        {
+          staticClass: "btn btn-success btn-md",
+          attrs: { type: "button" },
+          on: { click: _vm.addFormModal },
+        },
+        [
+          _c("i", { staticClass: "fas fa-fw fa-plus" }),
+          _vm._v("\n      Agregar\n    "),
+        ]
+      ),
+    ]),
+    _vm._v(" "),
+    _c("div", {
+      ref: "exampleModal",
+      staticClass: "modal fade",
+      attrs: { "data-backdrop": "static", "data-backd": "" },
+    }),
     _vm._v(" "),
     _c("table", { staticClass: "table" }, [
       _vm._m(0),
@@ -33180,11 +33442,172 @@ var render = function () {
             _c("td", [_vm._v(_vm._s(estudiante.nombre))]),
             _vm._v(" "),
             _c("td", [_vm._v(_vm._s(estudiante.created_at))]),
+            _vm._v(" "),
+            _c("td", [
+              _c(
+                "button",
+                {
+                  staticClass: "btn btn-info btn-sm",
+                  attrs: { type: "button" },
+                  on: {
+                    click: function ($event) {
+                      return _vm.editFormModal(estudiante)
+                    },
+                  },
+                },
+                [
+                  _c("i", { staticClass: "fas fa-fw fa-edit" }),
+                  _vm._v("\n                    Editar\n                  "),
+                ]
+              ),
+              _vm._v(" "),
+              _c(
+                "button",
+                {
+                  staticClass: "btn btn-danger btn-sm",
+                  attrs: { type: "button" },
+                  on: {
+                    click: function ($event) {
+                      return _vm.deleteFormModal(estudiante)
+                    },
+                  },
+                },
+                [
+                  _c("i", { staticClass: "fas fa-fw fa-trash" }),
+                  _vm._v("\n                    Eliminar\n                  "),
+                ]
+              ),
+            ]),
           ])
         }),
         0
       ),
     ]),
+    _vm._v(" "),
+    _c(
+      "div",
+      {
+        ref: "exampleModal",
+        staticClass: "modal fade",
+        attrs: {
+          "data-backdrop": "static",
+          "data-keyboard": "false",
+          tabindex: "-1",
+          role: "dialog",
+          "aria-labelledby": "exampleModalCenterTitle",
+          "aria-hidden": "true",
+        },
+      },
+      [
+        _c(
+          "div",
+          {
+            staticClass: "modal-dialog modal-dialog-centered",
+            attrs: { role: "document" },
+          },
+          [
+            _c("div", { staticClass: "modal-content" }, [
+              _c("div", { staticClass: "modal-header" }, [
+                _c(
+                  "h5",
+                  {
+                    staticClass: "modal-title",
+                    attrs: { id: "exampleModalLongTitle" },
+                  },
+                  [
+                    _vm.Type == "add"
+                      ? _c("span", [_vm._v("Agregar estudiante")])
+                      : _vm.Type == "edit"
+                      ? _c("span", [_vm._v("Editar estudiante")])
+                      : _vm._e(),
+                  ]
+                ),
+                _vm._v(" "),
+                _c(
+                  "button",
+                  {
+                    staticClass: "close",
+                    attrs: { type: "button", "aria-label": "Close" },
+                    on: { click: _vm.closeModal },
+                  },
+                  [
+                    _c("span", { attrs: { "aria-hidden": "true" } }, [
+                      _vm._v("×"),
+                    ]),
+                  ]
+                ),
+              ]),
+              _vm._v(" "),
+              _c("div", { staticClass: "modal-body" }, [
+                _c("form", { attrs: { action: "", id: "formulario" } }, [
+                  _c("div", { staticClass: "mb-3" }, [
+                    _c("input", {
+                      attrs: { type: "hidden" },
+                      domProps: { value: _vm.fields.id },
+                    }),
+                    _vm._v(" "),
+                    _c(
+                      "label",
+                      { staticClass: "form-label", attrs: { for: "nombre" } },
+                      [_vm._v("Name")]
+                    ),
+                    _vm._v(" "),
+                    _c("input", {
+                      directives: [
+                        {
+                          name: "model",
+                          rawName: "v-model",
+                          value: _vm.fields.nombre,
+                          expression: "fields.nombre",
+                        },
+                      ],
+                      staticClass: "form-control",
+                      attrs: {
+                        type: "text",
+                        id: "nombre",
+                        "aria-describedby": "nombre",
+                        name: "nombre",
+                      },
+                      domProps: { value: _vm.fields.nombre },
+                      on: {
+                        input: function ($event) {
+                          if ($event.target.composing) {
+                            return
+                          }
+                          _vm.$set(_vm.fields, "nombre", $event.target.value)
+                        },
+                      },
+                    }),
+                  ]),
+                ]),
+              ]),
+              _vm._v(" "),
+              _c("div", { staticClass: "modal-footer" }, [
+                _c(
+                  "button",
+                  {
+                    staticClass: "btn btn-secondary",
+                    attrs: { type: "button" },
+                    on: { click: _vm.closeModal },
+                  },
+                  [_vm._v("\n            Close\n          ")]
+                ),
+                _vm._v(" "),
+                _c(
+                  "button",
+                  {
+                    staticClass: "btn btn-primary",
+                    attrs: { type: "button" },
+                    on: { click: _vm.addUpdateElement },
+                  },
+                  [_vm._v("\n            Guardar\n          ")]
+                ),
+              ]),
+            ]),
+          ]
+        ),
+      ]
+    ),
   ])
 }
 var staticRenderFns = [
@@ -33199,6 +33622,8 @@ var staticRenderFns = [
         _c("th", [_vm._v("Nombre")]),
         _vm._v(" "),
         _c("th", [_vm._v("Fecha de registro")]),
+        _vm._v(" "),
+        _c("th", [_vm._v("Acciones")]),
       ]),
     ])
   },
