@@ -15,11 +15,10 @@ use Illuminate\Support\Facades\Auth;
 */
 
 
+Route::view('admin', 'admin.index');
+Route::view('admin/example', 'admin.example');
 Auth::routes();
-Route::group(['middleware' => ['auth']], function(){
     
-    Route::view('admin', 'admin.index');
-    Route::view('admin/example', 'admin.example');
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 Route::get('/ejemplo', [App\Http\Controllers\RoleController::class, 'index'])->name('ejemplo');
 Route::get('/usuarios', [App\Http\Controllers\UserController::class, 'index'])->name('usuarios');
@@ -35,4 +34,3 @@ Route::post('/agregar-usuario', [App\Http\Controllers\UserController::class, 'sa
 Route::post('/actualizar-usuario/{id}', [App\Http\Controllers\UserController::class, 'update']);
 Route::post('/eliminar-usuario/{id}', [App\Http\Controllers\UserController::class, 'delete']);
 
-});
