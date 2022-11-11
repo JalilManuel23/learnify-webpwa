@@ -8,6 +8,8 @@ require('./bootstrap');
 
 window.Vue = require('vue').default;
 window.axios = require('axios');
+import Swal from 'sweetalert2';
+window.Swal = Swal;
 
 /**
  * The following block of code may be used to automatically register your

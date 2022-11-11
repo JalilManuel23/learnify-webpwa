@@ -42,7 +42,7 @@
             <button
               type="button"
               class="btn btn-danger btn-sm"
-              @click="deleteFormModal(role.id)"
+              @click="deleteFormModal(role)"
             >
               <i class="fas fa-fw fa-trash"></i>
               Eliminar
@@ -78,8 +78,9 @@
             </button>
           </div>
           <div class="modal-body">
-            <form action="">
+            <form action="" id="formulario">
               <div class="mb-3">
+                <input type="hidden" :value="fields.id" />
                 <label for="name" class="form-label">Name</label>
                 <input
                   type="text"
@@ -127,7 +128,7 @@ export default {
       Type: "add",
       fields: {
         id: "",
-        name: ""
+        name: "",
       },
     };
   },
@@ -154,17 +155,105 @@ export default {
       this.fields.name = role.name;
       this.openModal();
     },
+    deleteFormModal(role) {
+      this.fields.id = role.id;
+      axios
+        .post("/eliminar-rol/" + this.fields.id)
+        .then((response) => {
+          if (response.status == 200) {
+              Swal.fire({
+                toast: true,
+                icon: "success",
+                iconColor: "white",
+                title:
+                  '<h1 style="color:white; font-size:1.4rem !important;">El registro ha sido eliminado con éxito</h1>',
+                animation: false,
+                timerProgressBar: true,
+                position: "top-right",
+                background: "#a5dc86",
+                showConfirmButton: false,
+                timer: 3000,
+                didOpen: (toast) => {
+                  toast.addEventListener("mouseenter", Swal.stopTimer);
+                  toast.addEventListener("mouseleave", Swal.resumeTimer);
+                },
+              });
+            }
+          console.log(response);
+        })
+        .catch((error) => {
+          Swal.fire({
+              toast: true,
+              icon: "error",
+              iconColor: "white",
+              title:
+                '<h1 style="color:white; font-size:1.4rem !important;">La petición ha fallado</h1>',
+              animation: false,
+              timerProgressBar: true,
+
+              position: "top-right",
+              background: "#f27474",
+              showConfirmButton: false,
+              timer: 3000,
+              didOpen: (toast) => {
+                toast.addEventListener("mouseenter", Swal.stopTimer);
+                toast.addEventListener("mouseleave", Swal.resumeTimer);
+              },
+            });
+            console.log(error);
+          });
+    },
     addUpdateElement() {
+      var form = document.getElementById("formulario");
+      var formdata = new FormData(form);
       if (this.Type == "add") {
         let count = this.rolesTable.length + 1;
-        var formdata = new FormData();
-        formdata.append('name', this.fields.name);
-        formdata.append('key_name', this.fields.key_name);
-        axios.post('/agregar-rol', formdata)
-          .then(response => {
+        formdata.append("name", this.fields.name);
+        formdata.append("key_name", this.fields.key_name);
+        axios
+          .post("/agregar-rol", formdata)
+          .then((response) => {
+            if (response.status == 200) {
+              Swal.fire({
+                toast: true,
+                icon: "success",
+                iconColor: "white",
+                title:
+                  '<h1 style="color:white; font-size:1.4rem !important;">El registro ha sido agregado con éxito</h1>',
+                animation: false,
+                timerProgressBar: true,
+
+                position: "top-right",
+                background: "#a5dc86",
+                showConfirmButton: false,
+                timer: 3000,
+                didOpen: (toast) => {
+                  toast.addEventListener("mouseenter", Swal.stopTimer);
+                  toast.addEventListener("mouseleave", Swal.resumeTimer);
+                },
+              });
+            }
             console.log(response);
           })
-          .catch( error => {
+          .catch((error) => {
+            Swal.fire({
+              toast: true,
+              icon: "error",
+              iconColor: "white",
+              title:
+                '<h1 style="color:white; font-size:1.4rem !important;">La petición ha fallado</h1>',
+              animation: false,
+              timerProgressBar: true,
+
+              position: "top-right",
+              background: "#f27474",
+              showConfirmButton: false,
+              timer: 3000,
+              didOpen: (toast) => {
+                toast.addEventListener("mouseenter", Swal.stopTimer);
+                toast.addEventListener("mouseleave", Swal.resumeTimer);
+              },
+            });
             console.log(error);
           });
         this.rolesTable.push({ id: count, name: this.fields.name });
@@ -172,20 +261,56 @@ export default {
         let upd_obj = this.rolesTable.findIndex(
           (obj) => obj.id == this.fields.id
         );
+        this.rolesTable[upd_obj].id = this.fields.id;
         this.rolesTable[upd_obj].name = this.fields.name;
+        axios
+          .post("/actualizar-rol/" + this.fields.id, formdata)
+          .then((response) => {
+            if (response.status == 200) {
+              Swal.fire({
+                toast: true,
+                icon: "success",
+                iconColor: "white",
+                title:
+                  '<h1 style="color:white; font-size:1.4rem !important;">El registro ha sido editado con éxito</h1>',
+                animation: false,
+                timerProgressBar: true,
+
+                position: "top-right",
+                background: "#a5dc86",
+                showConfirmButton: false,
+                timer: 3000,
+                didOpen: (toast) => {
+                  toast.addEventListener("mouseenter", Swal.stopTimer);
+                  toast.addEventListener("mouseleave", Swal.resumeTimer);
+                },
+              });
+            }
+            console.log(response);
+          })
+          .catch((error) => {
+            Swal.fire({
+              toast: true,
+              icon: "error",
+              iconColor: "white",
+              title:
+                '<h1 style="color:white; font-size:1.4rem !important;">La petición ha fallado</h1>',
+              animation: false,
+              timerProgressBar: true,
+
+              position: "top-right",
+              background: "#f27474",
+              showConfirmButton: false,
+              timer: 3000,
+              didOpen: (toast) => {
+                toast.addEventListener("mouseenter", Swal.stopTimer);
+                toast.addEventListener("mouseleave", Swal.resumeTimer);
+              },
+            });
+            console.log(error);
+          });
       }
       this.closeModal();
-    },
-    deleteUpdateElement() {
-      Swal.fire({
-        text: "Toast with custom target",
-        target: "#custom-target",
-        customClass: {
-          container: "position-absolute",
-        },
-        toast: true,
-        position: "bottom-right",
-      });
     },
   },
 };

@@ -27,3 +27,5 @@ Route::get('/roles', [App\Http\Controllers\RoleController::class, 'index'])->nam
 Route::get('/estudiantes', [App\Http\Controllers\EstudianteController::class, 'index'])->name('estudiantes');
 
 Route::post('/agregar-rol', [App\Http\Controllers\RoleController::class, 'save']);
+Route::post('/actualizar-rol/{id}', [App\Http\Controllers\RoleController::class, 'update']);
+Route::post('/eliminar-rol/{id}', [App\Http\Controllers\RoleController::class, 'delete']);

@@ -44,6 +44,9 @@
     <script src="{{ asset('js/demo/chart-area-demo.js')}}"></script>
     <script src="{{ asset('js/demo/chart-pie-demo.js') }}"></script>
 
+    <script src="sweetalert2.min.js"></script>
+    <script src="sweetalert2.all.min.js"></script>
+
 </body>
 
 </html>

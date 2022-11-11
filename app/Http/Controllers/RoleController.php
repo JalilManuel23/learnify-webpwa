@@ -26,16 +26,19 @@ class RoleController extends Controller
         return redirect('roles');
     }
 
-    // public function update($id)
-    // {
-    //     $role = Role::find($id);
-    //     $role->name = 'Administrativos';
-    //     $role->key_name = 'administrativos';
-    //     $role->save();
-    // }
+    public function update(Request $request)
+    {
+        $role = Role::find($request->id);
+        $role->name =  $request->name;
+        $role->key_name = Str::slug($request->name);
+        $role->save();
 
-    // public function delete($id)
-    // {
-    //     Role::find($id)->delete();
-    // }
+        return redirect('roles');
+    }
+
+    public function delete(Request $request)
+    {
+    $role = Role::find($request->id);
+    $role->delete();
+ }
 }
