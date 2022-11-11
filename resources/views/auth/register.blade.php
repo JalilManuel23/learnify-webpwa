@@ -75,18 +75,7 @@
                             <div class="col-md-6">
                                 <input id="apellido_m" type="text" class="form-control" name="apellido_m" required autocomplete="apellido_m">
                             </div>
-                        </div>
-
-                        
-                        <div class="row mb-3">
-                            <label for="fotografia" class="col-md-4 col-form-label text-md-end">{{ __('Fotografia') }}</label>
-
-                            <div class="col-md-6">
-                                <input id="fotografia" type="file" class="form-control" name="fotografia" required autocomplete="fotografia">
-                            </div>
-                        </div>
-
-                        
+                        </div>                   
                         
                         <div class="row mb-3">
                             <label for="telefono" class="col-md-4 col-form-label text-md-end">{{ __('Teléfono') }}</label>
