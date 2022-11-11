@@ -241,7 +241,7 @@
                 icon: "error",
                 iconColor: "white",
                 title:
-                  '<h1 style="color:white; font-size:1.4rem !important;">La petición ha fallado</h1>',
+                  '<h1 style="color:white; font-size:1.4rem !important;">Contraseña no segura, intente de nuevo</h1>',
                 animation: false,
                 timerProgressBar: true,
                 position: "top-right",
@@ -316,7 +316,7 @@
   </script>
 <!-- <template>
     <div class="container">
-        <h1>Usuarios</h1>
+        <h1>usuarios</h1>
         <table class="table">
             <thead>
                 <tr>
