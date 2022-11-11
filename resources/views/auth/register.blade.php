@@ -61,6 +61,57 @@
                             </div>
                         </div>
 
+                        <div class="row mb-3">
+                            <label for="apellido_p" class="col-md-4 col-form-label text-md-end">{{ __('Apellido Paterno') }}</label>
+
+                            <div class="col-md-6">
+                                <input id="apellido_p" type="text" class="form-control" name="apellido_p" required autocomplete="apellido_p">
+                            </div>
+                        </div>
+
+                        <div class="row mb-3">
+                            <label for="apellido_m" class="col-md-4 col-form-label text-md-end">{{ __('Apellido Materno') }}</label>
+
+                            <div class="col-md-6">
+                                <input id="apellido_m" type="text" class="form-control" name="apellido_m" required autocomplete="apellido_m">
+                            </div>
+                        </div>
+
+                        
+                        <div class="row mb-3">
+                            <label for="fotografia" class="col-md-4 col-form-label text-md-end">{{ __('Fotografia') }}</label>
+
+                            <div class="col-md-6">
+                                <input id="fotografia" type="file" class="form-control" name="fotografia" required autocomplete="fotografia">
+                            </div>
+                        </div>
+
+                        
+                        
+                        <div class="row mb-3">
+                            <label for="telefono" class="col-md-4 col-form-label text-md-end">{{ __('Teléfono') }}</label>
+
+                            <div class="col-md-6">
+                                <input id="telefono" type="tel" class="form-control" name="telefono" required autocomplete="telefono">
+                            </div>
+                        </div>
+
+                        <div class="row mb-3">
+                            <label for="ocupacion" class="col-md-4 col-form-label text-md-end">{{ __('Ocupación') }}</label>
+
+                            <div class="col-md-6">
+                                <input id="ocupacion" type="text" class="form-control" name="ocupacion" required autocomplete="ocupacion">
+                            </div>
+                        </div>
+
+                        <div class="row mb-3">
+                            <label for="descripcion" class="col-md-4 col-form-label text-md-end">{{ __('Descripción') }}</label>
+
+                            <div class="col-md-6">
+                                <input id="descripcion" type="text" class="form-control" name="descripcion" required autocomplete="descripcion">
+                            </div>
+                        </div>
+
                         <div class="row mb-0">
                             <div class="col-md-6 offset-md-4">
                                 <button type="submit" class="btn btn-primary">

@@ -5752,6 +5752,94 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var bootstrap__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! bootstrap */ "./node_modules/bootstrap/dist/js/bootstrap.esm.js");
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 //
 //
 //
@@ -5775,11 +5863,200 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 
+
+
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   props: {
     usuarios: {
-      type: Object,
+      type: [Object, Array],
       required: true
+    }
+  },
+  data: function data() {
+    return {
+      usuariosTable: this.usuarios,
+      Type: "add",
+      fields: {
+        id: "",
+        name: "",
+        email: "",
+        password: ""
+      }
+    };
+  },
+  mounted: function mounted() {
+    this.modal = new bootstrap__WEBPACK_IMPORTED_MODULE_1__.Modal(this.$refs.exampleModal);
+  },
+  methods: {
+    openModal: function openModal() {
+      this.modal.show();
+    },
+    closeModal: function closeModal() {
+      this.fields.name = "";
+      this.fields.email = "";
+      this.fields.password = "";
+      this.modal.hide();
+    },
+    addFormModal: function addFormModal() {
+      this.Type = "add";
+      this.fields.name = "";
+      this.fields.email = "";
+      this.fields.password = "";
+      this.openModal();
+    },
+    editFormModal: function editFormModal(usuario) {
+      this.Type = "edit";
+      this.fields.id = usuario.id;
+      this.fields.name = usuario.name;
+      this.fields.email = usuario.email;
+      this.fields.password = usuario.password;
+      this.openModal();
+    },
+    deleteFormModal: function deleteFormModal(usuario) {
+      this.fields.id = usuario.id;
+      axios__WEBPACK_IMPORTED_MODULE_0___default().post("/eliminar-usuario/" + this.fields.id).then(function (response) {
+        if (response.status == 200) {
+          Swal.fire({
+            toast: true,
+            icon: "success",
+            iconColor: "white",
+            title: '<h1 style="color:white; font-size:1.4rem !important;">El registro ha sido eliminado con éxito</h1>',
+            animation: false,
+            timerProgressBar: true,
+            position: "top-right",
+            background: "#a5dc86",
+            showConfirmButton: false,
+            timer: 3000,
+            didOpen: function didOpen(toast) {
+              toast.addEventListener("mouseenter", Swal.stopTimer);
+              toast.addEventListener("mouseleave", Swal.resumeTimer);
+            }
+          });
+        }
+        console.log(response);
+      })["catch"](function (error) {
+        Swal.fire({
+          toast: true,
+          icon: "error",
+          iconColor: "white",
+          title: '<h1 style="color:white; font-size:1.4rem !important;">La petición ha fallado</h1>',
+          animation: false,
+          timerProgressBar: true,
+          position: "top-right",
+          background: "#f27474",
+          showConfirmButton: false,
+          timer: 3000,
+          didOpen: function didOpen(toast) {
+            toast.addEventListener("mouseenter", Swal.stopTimer);
+            toast.addEventListener("mouseleave", Swal.resumeTimer);
+          }
+        });
+        console.log(error);
+      });
+    },
+    addUpdateElement: function addUpdateElement() {
+      var _this = this;
+      var form = document.getElementById("formulario");
+      var formdata = new FormData(form);
+      if (this.Type == "add") {
+        var count = this.usuariosTable.length + 1;
+        formdata.append("name", this.fields.name);
+        formdata.append("email", this.fields.email);
+        formdata.append("password", this.fields.password);
+        axios__WEBPACK_IMPORTED_MODULE_0___default().post("/agregar-usuario", formdata).then(function (response) {
+          if (response.status == 200) {
+            Swal.fire({
+              toast: true,
+              icon: "success",
+              iconColor: "white",
+              title: '<h1 style="color:white; font-size:1.4rem !important;">El registro ha sido agregado con éxito</h1>',
+              animation: false,
+              timerProgressBar: true,
+              position: "top-right",
+              background: "#a5dc86",
+              showConfirmButton: false,
+              timer: 3000,
+              didOpen: function didOpen(toast) {
+                toast.addEventListener("mouseenter", Swal.stopTimer);
+                toast.addEventListener("mouseleave", Swal.resumeTimer);
+              }
+            });
+          }
+          console.log(response);
+        })["catch"](function (error) {
+          Swal.fire({
+            toast: true,
+            icon: "error",
+            iconColor: "white",
+            title: '<h1 style="color:white; font-size:1.4rem !important;">Contraseña no segura, intente de nuevo</h1>',
+            animation: false,
+            timerProgressBar: true,
+            position: "top-right",
+            background: "#f27474",
+            showConfirmButton: false,
+            timer: 3000,
+            didOpen: function didOpen(toast) {
+              toast.addEventListener("mouseenter", Swal.stopTimer);
+              toast.addEventListener("mouseleave", Swal.resumeTimer);
+            }
+          });
+          console.log(error);
+        });
+        this.usuariosTable.push({
+          id: count,
+          name: this.fields.name,
+          email: this.fields.email,
+          password: this.fields.password
+        });
+      } else {
+        var upd_obj = this.usuariosTable.findIndex(function (obj) {
+          return obj.id == _this.fields.id;
+        });
+        this.usuariosTable[upd_obj].id = this.fields.id;
+        this.usuariosTable[upd_obj].name = this.fields.name;
+        this.usuariosTable[upd_obj].email = this.fields.email;
+        this.usuariosTable[upd_obj].password = this.fields.password;
+        axios__WEBPACK_IMPORTED_MODULE_0___default().post("/actualizar-usuario/" + this.fields.id, formdata).then(function (response) {
+          if (response.status == 200) {
+            Swal.fire({
+              toast: true,
+              icon: "success",
+              iconColor: "white",
+              title: '<h1 style="color:white; font-size:1.4rem !important;">El registro ha sido editado con éxito</h1>',
+              animation: false,
+              timerProgressBar: true,
+              position: "top-right",
+              background: "#a5dc86",
+              showConfirmButton: false,
+              timer: 3000,
+              didOpen: function didOpen(toast) {
+                toast.addEventListener("mouseenter", Swal.stopTimer);
+                toast.addEventListener("mouseleave", Swal.resumeTimer);
+              }
+            });
+          }
+          console.log(response);
+        })["catch"](function (error) {
+          Swal.fire({
+            toast: true,
+            icon: "error",
+            iconColor: "white",
+            title: '<h1 style="color:white; font-size:1.4rem !important;">La petición ha fallado</h1>',
+            animation: false,
+            timerProgressBar: true,
+            position: "top-right",
+            background: "#f27474",
+            showConfirmButton: false,
+            timer: 3000,
+            didOpen: function didOpen(toast) {
+              toast.addEventListener("mouseenter", Swal.stopTimer);
+              toast.addEventListener("mouseleave", Swal.resumeTimer);
+            }
+          });
+          console.log(error);
+        });
+      }
+      this.closeModal();
     }
   }
 });
@@ -33234,10 +33511,29 @@ var render = function () {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", { staticClass: "container" }, [
-    _c("h1", [_vm._v("Usuarios")]),
+  return _c("div", {}, [
+    _c("div", { staticClass: "my-2" }, [
+      _c(
+        "button",
+        {
+          staticClass: "btn btn-success btn-md",
+          attrs: { type: "button" },
+          on: { click: _vm.addFormModal },
+        },
+        [
+          _c("i", { staticClass: "fas fa-fw fa-plus" }),
+          _vm._v("\n      Agregar\n    "),
+        ]
+      ),
+    ]),
     _vm._v(" "),
-    _c("table", { staticClass: "table" }, [
+    _c("div", {
+      ref: "exampleModal",
+      staticClass: "modal fade",
+      attrs: { "data-backdrop": "static", "data-backd": "" },
+    }),
+    _vm._v(" "),
+    _c("table", { staticClass: "table table-responsive-lg" }, [
       _vm._m(0),
       _vm._v(" "),
       _c(
@@ -33249,11 +33545,240 @@ var render = function () {
             _c("td", [_vm._v(_vm._s(usuario.name))]),
             _vm._v(" "),
             _c("td", [_vm._v(_vm._s(usuario.email))]),
+            _vm._v(" "),
+            _c("td", [_vm._v(_vm._s(usuario.password))]),
+            _vm._v(" "),
+            _c("td", [
+              _c(
+                "button",
+                {
+                  staticClass: "btn btn-info btn-sm",
+                  attrs: { type: "button" },
+                  on: {
+                    click: function ($event) {
+                      return _vm.editFormModal(usuario)
+                    },
+                  },
+                },
+                [
+                  _c("i", { staticClass: "fas fa-fw fa-edit" }),
+                  _vm._v("\n            Editar\n          "),
+                ]
+              ),
+              _vm._v(" "),
+              _c(
+                "button",
+                {
+                  staticClass: "btn btn-danger btn-sm",
+                  attrs: { type: "button" },
+                  on: {
+                    click: function ($event) {
+                      return _vm.deleteFormModal(usuario)
+                    },
+                  },
+                },
+                [
+                  _c("i", { staticClass: "fas fa-fw fa-trash" }),
+                  _vm._v("\n            Eliminar\n          "),
+                ]
+              ),
+            ]),
           ])
         }),
         0
       ),
     ]),
+    _vm._v(" "),
+    _c(
+      "div",
+      {
+        ref: "exampleModal",
+        staticClass: "modal fade",
+        attrs: {
+          "data-backdrop": "static",
+          "data-keyboard": "false",
+          tabindex: "-1",
+          role: "dialog",
+          "aria-labelledby": "exampleModalCenterTitle",
+          "aria-hidden": "true",
+        },
+      },
+      [
+        _c(
+          "div",
+          {
+            staticClass: "modal-dialog modal-dialog-centered",
+            attrs: { role: "document" },
+          },
+          [
+            _c("div", { staticClass: "modal-content" }, [
+              _c("div", { staticClass: "modal-header" }, [
+                _c(
+                  "h5",
+                  {
+                    staticClass: "modal-title",
+                    attrs: { id: "exampleModalLongTitle" },
+                  },
+                  [
+                    _vm.Type == "add"
+                      ? _c("span", [_vm._v("Agregar usuario")])
+                      : _vm.Type == "edit"
+                      ? _c("span", [_vm._v("Editar usuario")])
+                      : _vm._e(),
+                  ]
+                ),
+                _vm._v(" "),
+                _c(
+                  "button",
+                  {
+                    staticClass: "close",
+                    attrs: { type: "button", "aria-label": "Close" },
+                    on: { click: _vm.closeModal },
+                  },
+                  [
+                    _c("span", { attrs: { "aria-hidden": "true" } }, [
+                      _vm._v("×"),
+                    ]),
+                  ]
+                ),
+              ]),
+              _vm._v(" "),
+              _c("div", { staticClass: "modal-body" }, [
+                _c("form", { attrs: { action: "", id: "formulario" } }, [
+                  _c("div", { staticClass: "mb-3" }, [
+                    _c("input", {
+                      attrs: { type: "hidden" },
+                      domProps: { value: _vm.fields.id },
+                    }),
+                    _vm._v(" "),
+                    _c(
+                      "label",
+                      { staticClass: "form-label", attrs: { for: "name" } },
+                      [_vm._v("Name")]
+                    ),
+                    _vm._v(" "),
+                    _c("input", {
+                      directives: [
+                        {
+                          name: "model",
+                          rawName: "v-model",
+                          value: _vm.fields.name,
+                          expression: "fields.name",
+                        },
+                      ],
+                      staticClass: "form-control",
+                      attrs: {
+                        type: "text",
+                        id: "name",
+                        "aria-describedby": "nombre",
+                        name: "name",
+                      },
+                      domProps: { value: _vm.fields.name },
+                      on: {
+                        input: function ($event) {
+                          if ($event.target.composing) {
+                            return
+                          }
+                          _vm.$set(_vm.fields, "name", $event.target.value)
+                        },
+                      },
+                    }),
+                    _vm._v(" "),
+                    _c(
+                      "label",
+                      { staticClass: "form-label", attrs: { for: "email" } },
+                      [_vm._v("Email")]
+                    ),
+                    _vm._v(" "),
+                    _c("input", {
+                      directives: [
+                        {
+                          name: "model",
+                          rawName: "v-model",
+                          value: _vm.fields.email,
+                          expression: "fields.email",
+                        },
+                      ],
+                      staticClass: "form-control",
+                      attrs: {
+                        type: "email",
+                        id: "email",
+                        "aria-describedby": "nombre",
+                        name: "email",
+                      },
+                      domProps: { value: _vm.fields.email },
+                      on: {
+                        input: function ($event) {
+                          if ($event.target.composing) {
+                            return
+                          }
+                          _vm.$set(_vm.fields, "email", $event.target.value)
+                        },
+                      },
+                    }),
+                    _vm._v(" "),
+                    _c(
+                      "label",
+                      { staticClass: "form-label", attrs: { for: "password" } },
+                      [_vm._v("Password")]
+                    ),
+                    _vm._v(" "),
+                    _c("input", {
+                      directives: [
+                        {
+                          name: "model",
+                          rawName: "v-model",
+                          value: _vm.fields.password,
+                          expression: "fields.password",
+                        },
+                      ],
+                      staticClass: "form-control",
+                      attrs: {
+                        type: "password",
+                        id: "password",
+                        "aria-describedby": "nombre",
+                        name: "password",
+                      },
+                      domProps: { value: _vm.fields.password },
+                      on: {
+                        input: function ($event) {
+                          if ($event.target.composing) {
+                            return
+                          }
+                          _vm.$set(_vm.fields, "password", $event.target.value)
+                        },
+                      },
+                    }),
+                  ]),
+                ]),
+              ]),
+              _vm._v(" "),
+              _c("div", { staticClass: "modal-footer" }, [
+                _c(
+                  "button",
+                  {
+                    staticClass: "btn btn-secondary",
+                    attrs: { type: "button" },
+                    on: { click: _vm.closeModal },
+                  },
+                  [_vm._v("\n            Close\n          ")]
+                ),
+                _vm._v(" "),
+                _c(
+                  "button",
+                  {
+                    staticClass: "btn btn-primary",
+                    attrs: { type: "button" },
+                    on: { click: _vm.addUpdateElement },
+                  },
+                  [_vm._v("\n            Guardar\n          ")]
+                ),
+              ]),
+            ]),
+          ]
+        ),
+      ]
+    ),
   ])
 }
 var staticRenderFns = [
@@ -33268,6 +33793,10 @@ var staticRenderFns = [
         _c("th", [_vm._v("Nombre")]),
         _vm._v(" "),
         _c("th", [_vm._v("Email")]),
+        _vm._v(" "),
+        _c("th", [_vm._v("Password")]),
+        _vm._v(" "),
+        _c("th", [_vm._v("Acciones")]),
       ]),
     ])
   },
