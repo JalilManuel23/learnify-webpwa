@@ -13,28 +13,24 @@
             <thead>
                 <tr>
                     <th>ID</th>
-                    <th>Titulo</th>
-                    <th>Instructor</th>
-                    <th>Categoria</th>
-                    <th>Duracion</th>
-                    <th>Precio</th>
+                    <th>Usuario</th>
+                    <th>Calificación</th>
+                    <th>Especialidad</th>
                     <th>Acciones</th>
                 </tr>
             </thead>
             <tbody>
-                <tr v-for="curso in cursos" :key="curso.id">
-                    <td>{{ curso.id }}</td>
-                    <th>{{ curso.titulo }}</th>
-                    <th>{{ curso.instructor }}</th>
-                    <th>{{ curso.categoria }}</th>
-                    <th>{{ curso.duracion }}</th>
-                    <th>{{ curso.precio }}</th>
+                <tr v-for="instructor in instructores" :key="instructor.id">
+                    <td>{{ instructor.id }}</td>
+                    <th>{{ instructor.usuario }}</th>
+                    <th>{{ instructor.calificacion }}</th>
+                    <th>{{ instructor.especialidad }}</th>
                     <td>
-                        <button type="button" class="btn btn-info btn-sm" @click="editFormModal(curso)">
+                        <button type="button" class="btn btn-info btn-sm" @click="editFormModal(instructor)">
                             <i class="fas fa-fw fa-edit"></i>
                             Editar
                         </button>
-                        <button type="button" class="btn btn-danger btn-sm" @click="deleteFormModal(curso)">
+                        <button type="button" class="btn btn-danger btn-sm" @click="deleteFormModal(instructor)">
                             <i class="fas fa-fw fa-trash"></i>
                             Eliminar
                         </button>
@@ -48,8 +44,8 @@
                 <div class="modal-content">
                     <div class="modal-header">
                         <h5 class="modal-title" id="exampleModalLongTitle">
-                            <span v-if="Type == 'add'">Agregar Curso</span>
-                            <span v-else-if="Type == 'edit'">Editar Curso</span>
+                            <span v-if="Type == 'add'">Agregar Instructor</span>
+                            <span v-else-if="Type == 'edit'">Editar Instructor</span>
                         </h5>
                         <button type="button" class="close" @click="closeModal" aria-label="Close">
                             <span aria-hidden="true">&times;</span>
@@ -60,29 +56,17 @@
                             <div class="mb-3">
                                 <input type="hidden" :value="fields.id" />
 
-                                <label for="titulo" class="form-label">Titulo</label>
-                                <input type="text" v-model="fields.titulo" class="form-control" id="titulo"
-                                    aria-describedby="titulo" name="titulo" />
+                                <label for="usuario" class="form-label">Usuario</label>
+                                <input type="text" v-model="fields.usuario" class="form-control" id="usuario"
+                                    aria-describedby="usuario" name="usuario" />
 
-                                <label for="instructor" class="form-label">Instructor</label>
-                                <input type="text" v-model="fields.instructor" class="form-control" id="instructor"
-                                    aria-describedby="instructor" name="instructor" />
+                                <label for="calificacion" class="form-label">Calificación</label>
+                                <input type="text" v-model="fields.calificacion" class="form-control" id="calificacion"
+                                    aria-describedby="calificacion" name="calificacion" />
 
-                                <label for="categoria" class="form-label">Categoría</label>
-                                <input type="text" v-model="fields.categoria" class="form-control" id="categoria"
-                                    aria-describedby="categoria" name="categoria" />
-
-                                <label for="duracion" class="form-label">Duración</label>
-                                <input type="text" v-model="fields.duracion" class="form-control" id="duracion"
-                                    aria-describedby="duracion" name="duracion" />
-
-                                <label for="descripcion" class="form-label">Descripción</label>
-                                <input type="text" v-model="fields.descripcion" class="form-control" id="descripcion"
-                                    aria-describedby="descripcion" name="descripcion" />
-
-                                <label for="precio" class="form-label">Precio</label>
-                                <input type="number" v-model="fields.precio" class="form-control" id="precio"
-                                    aria-describedby="precio" name="precio" />
+                                <label for="especialidad" class="form-label">Especialidad</label>
+                                <input type="text" v-model="fields.especialidad" class="form-control" id="especialidad"
+                                    aria-describedby="especialidad" name="especialidad" />
                             </div>
                         </form>
                     </div>
@@ -106,23 +90,20 @@ import { Modal } from "bootstrap";
 
 export default {
     props: {
-        cursos: {
+        instructores: {
             type: [Object, Array],
             required: true,
         },
     },
     data() {
         return {
-            cursosTable: this.cursos,
+            InstructoresTable: this.instructores,
             Type: "add",
             fields: {
                 id: "",
-                instructor: "",
-                categoria: "",
-                duracion: "",
-                titulo: "",
-                descripcion: "",
-                precio: "",
+                usuario: "",
+                calificacion: "",
+                especialidad: "",
             },
         };
     },
@@ -135,39 +116,30 @@ export default {
             this.modal.show();
         },
         closeModal() {
-            this.fields.instructor = "",
-            this.fields.categoria = "",
-            this.fields.duracion = "",
-            this.fields.titulo = "",
-            this.fields.descripcion = "",
-            this.fields.precio = "",
+            this.fields.usuario = "";
+            this.fields.calificacion = "",
+            this.fields.especialidad = "",
             this.modal.hide();
         },
         addFormModal() {
             this.Type = "add";
-            this.fields.instructor = "",
-            this.fields.categoria = "",
-            this.fields.duracion = "",
-            this.fields.titulo = "",
-            this.fields.descripcion = "",
-            this.fields.precio = "",
+            this.fields.usuario = "";
+            this.fields.calificacion = "",
+            this.fields.especialidad = "",
             this.openModal();
         },
-        editFormModal(curso) {
+        editFormModal(instructor) {
             this.Type = "edit";
-            this.fields.id          = curso.id;
-            this.fields.instructor  = curso.instructor,
-            this.fields.categoria   = curso.categoria,
-            this.fields.duracion    = curso.duracion,
-            this.fields.titulo      = curso.titulo,
-            this.fields.descripcion = curso.descripcion,
-            this.fields.precio      = curso.precio,
+            this.fields.id           = instructor.id;
+            this.fields.usuario      = instructor.usuario;
+            this.fields.calificacion = instructor.calificacion,
+            this.fields.especialidad = instructor.especialidad,
             this.openModal();
         },
-        deleteFormModal(curso) {
-            this.fields.id = curso.id;
+        deleteFormModal(instructor) {
+            this.fields.id = instructor.id;
             axios
-                .post("/eliminar-curso/" + this.fields.id)
+                .post("/eliminar-instructor/" + this.fields.id)
                 .then((response) => {
                     if (response.status == 200) {
                         Swal.fire({
@@ -216,15 +188,12 @@ export default {
             var form = document.getElementById("formulario");
             var formdata = new FormData(form);
             if (this.Type == "add") {
-                let count = this.cursosTable.length + 1;
-                formdata.append("instructor",this.fields.instructor);
-                formdata.append("categoria",this.fields.categoria); 
-                formdata.append("duracion",this.fields.duracion); 
-                formdata.append("titulo",this.fields.titulo); 
-                formdata.append("descripcion",this.fields.descripcion); 
-                formdata.append("precio",this.fields.precio);   
+                let count = this.InstructoresTable.length + 1;
+                formdata.append("usuario",this.fields.usuario);
+                formdata.append("calificacion",this.fields.calificacion); 
+                formdata.append("especialidad",this.fields.especialidad);   
                 axios
-                    .post("/agregar-curso", formdata)
+                    .post("/agregar-instructor", formdata)
                     .then((response) => {
                         if (response.status == 200) {
                             Swal.fire({
@@ -269,28 +238,22 @@ export default {
                         });
                         console.log(error);
                     });
-                this.cursosTable.push({
+                this.InstructoresTable.push({
                         id: count, 
-                        instructor: this.fields.instructor,
-                        categoria: this.fields.categoria,
-                        duracion: this.fields.duracion,
-                        titulo: this.fields.titulo,
-                        descripcion: this.fields.descripcion,
-                        precio: this.fields.precio
+                        usuario: this.fields.usuario,
+                        calificacion: this.fields.calificacion,
+                        especialidad: this.fields.especialidad
                     });     
             } else {
-                let upd_obj = this.cursosTable.findIndex(
+                let upd_obj = this.InstructoresTable.findIndex(
                     (obj) => obj.id == this.fields.id
                 );
-                this.cursosTable[upd_obj].id = this.fields.id;
-                this.cursosTable[upd_obj].instructor = this.fields.instructor;
-                this.cursosTable[upd_obj].categoria = this.fields.categoria;
-                this.cursosTable[upd_obj].duracion = this.fields.duracion;
-                this.cursosTable[upd_obj].titulo = this.fields.titulo;
-                this.cursosTable[upd_obj].descripcion = this.fields.descripcion;
-                this.cursosTable[upd_obj].precio = this.fields.precio;
+                this.InstructoresTable[upd_obj].id = this.fields.id;
+                this.InstructoresTable[upd_obj].usuario = this.fields.usuario;
+                this.InstructoresTable[upd_obj].calificacion = this.fields.calificacion;
+                this.InstructoresTable[upd_obj].especialidad = this.fields.especialidad;
                 axios
-                    .post("/actualizar-curso/" + this.fields.id, formdata)
+                    .post("/actualizar-instructor/" + this.fields.id, formdata)
                     .then((response) => {
                         if (response.status == 200) {
                             Swal.fire({
