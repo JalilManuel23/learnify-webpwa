@@ -41,7 +41,7 @@ Route::post('/eliminar-usuario/{id}', [App\Http\Controllers\UserController::clas
 // ESTUDIANTES
 Route::post('/agregar-estudiante', [App\Http\Controllers\EstudianteController::class, 'save']);
 Route::post('/actualizar-estudiante/{id}', [App\Http\Controllers\EstudianteController::class, 'update']);
-//Route::post('/eliminar-estudiante/{id}', [App\Http\Controllers\EstudianteController::class, 'delete']);
+Route::post('/eliminar-estudiante/{id}', [App\Http\Controllers\EstudianteController::class, 'delete']);
 
 // CURSOS
 Route::post('/agregar-curso', [App\Http\Controllers\CursoController::class, 'save']);
