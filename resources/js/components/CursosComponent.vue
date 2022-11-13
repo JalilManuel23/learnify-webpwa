@@ -62,27 +62,27 @@
 
                                 <label for="titulo" class="form-label">Titulo</label>
                                 <input type="text" v-model="fields.titulo" class="form-control" id="titulo"
-                                    aria-describedby="titulo" name="titulo" />
+                                    aria-describedby="titulo" name="titulo" required/>
 
                                 <label for="instructor" class="form-label">Instructor</label>
                                 <input type="text" v-model="fields.instructor" class="form-control" id="instructor"
-                                    aria-describedby="instructor" name="instructor" />
+                                    aria-describedby="instructor" name="instructor" required/>
 
                                 <label for="categoria" class="form-label">Categoría</label>
                                 <input type="text" v-model="fields.categoria" class="form-control" id="categoria"
-                                    aria-describedby="categoria" name="categoria" />
+                                    aria-describedby="categoria" name="categoria" required />
 
                                 <label for="duracion" class="form-label">Duración</label>
                                 <input type="text" v-model="fields.duracion" class="form-control" id="duracion"
-                                    aria-describedby="duracion" name="duracion" />
+                                    aria-describedby="duracion" name="duracion" required />
 
                                 <label for="descripcion" class="form-label">Descripción</label>
                                 <input type="text" v-model="fields.descripcion" class="form-control" id="descripcion"
-                                    aria-describedby="descripcion" name="descripcion" />
+                                    aria-describedby="descripcion" name="descripcion" required />
 
                                 <label for="precio" class="form-label">Precio</label>
                                 <input type="number" v-model="fields.precio" class="form-control" id="precio"
-                                    aria-describedby="precio" name="precio" />
+                                    aria-describedby="precio" name="precio" required />
                             </div>
                         </form>
                     </div>

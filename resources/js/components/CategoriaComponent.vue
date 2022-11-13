@@ -56,11 +56,11 @@
                                 
                                 <label for="instructor" class="form-label">Curso</label>
                                 <input type="text" v-model="fields.curso" class="form-control" id="curso"
-                                    aria-describedby="curso" name="curso" />
+                                    aria-describedby="curso" name="curso" required />
                              
                                     <label for="titulo" class="form-label">Titulo</label>
                                 <input type="text" v-model="fields.titulo" class="form-control" id="titulo"
-                                    aria-describedby="titulo" name="titulo" />
+                                    aria-describedby="titulo" name="titulo" required/>
                             </div>
                         </form>
                     </div>

@@ -6035,20 +6035,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 
 
 
@@ -7004,6 +6990,8 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
 
 
 
@@ -7285,34 +7273,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 
 
 
@@ -7407,6 +7367,7 @@ __webpack_require__.r(__webpack_exports__);
     },
     addUpdateElement: function addUpdateElement() {
       var _this = this;
+      //this.$refs[errorfield] = ''
       var form = document.getElementById("formulario");
       var formdata = new FormData(form);
       if (this.Type == "add") {
@@ -7432,6 +7393,7 @@ __webpack_require__.r(__webpack_exports__);
                 toast.addEventListener("mouseleave", Swal.resumeTimer);
               }
             });
+            _this.closeModal();
           }
           console.log(response);
         })["catch"](function (error) {
@@ -7485,6 +7447,7 @@ __webpack_require__.r(__webpack_exports__);
                 toast.addEventListener("mouseleave", Swal.resumeTimer);
               }
             });
+            _this.closeModal();
           }
           console.log(response);
         })["catch"](function (error) {
@@ -7507,7 +7470,6 @@ __webpack_require__.r(__webpack_exports__);
           console.log(error);
         });
       }
-      this.closeModal();
     }
   }
 });
@@ -35039,6 +35001,7 @@ var render = function () {
                         id: "curso",
                         "aria-describedby": "curso",
                         name: "curso",
+                        required: "",
                       },
                       domProps: { value: _vm.fields.curso },
                       on: {
@@ -35072,6 +35035,7 @@ var render = function () {
                         id: "titulo",
                         "aria-describedby": "titulo",
                         name: "titulo",
+                        required: "",
                       },
                       domProps: { value: _vm.fields.titulo },
                       on: {
@@ -35332,6 +35296,7 @@ var render = function () {
                         id: "titulo",
                         "aria-describedby": "titulo",
                         name: "titulo",
+                        required: "",
                       },
                       domProps: { value: _vm.fields.titulo },
                       on: {
@@ -35368,6 +35333,7 @@ var render = function () {
                         id: "instructor",
                         "aria-describedby": "instructor",
                         name: "instructor",
+                        required: "",
                       },
                       domProps: { value: _vm.fields.instructor },
                       on: {
@@ -35408,6 +35374,7 @@ var render = function () {
                         id: "categoria",
                         "aria-describedby": "categoria",
                         name: "categoria",
+                        required: "",
                       },
                       domProps: { value: _vm.fields.categoria },
                       on: {
@@ -35441,6 +35408,7 @@ var render = function () {
                         id: "duracion",
                         "aria-describedby": "duracion",
                         name: "duracion",
+                        required: "",
                       },
                       domProps: { value: _vm.fields.duracion },
                       on: {
@@ -35477,6 +35445,7 @@ var render = function () {
                         id: "descripcion",
                         "aria-describedby": "descripcion",
                         name: "descripcion",
+                        required: "",
                       },
                       domProps: { value: _vm.fields.descripcion },
                       on: {
@@ -35514,6 +35483,7 @@ var render = function () {
                         id: "precio",
                         "aria-describedby": "precio",
                         name: "precio",
+                        required: "",
                       },
                       domProps: { value: _vm.fields.precio },
                       on: {
@@ -35695,7 +35665,7 @@ var render = function () {
                 },
                 [
                   _c("i", { staticClass: "fas fa-fw fa-edit" }),
-                  _vm._v("\n                    Editar\n                  "),
+                  _vm._v("\n            Editar\n          "),
                 ]
               ),
               _vm._v(" "),
@@ -35712,7 +35682,7 @@ var render = function () {
                 },
                 [
                   _c("i", { staticClass: "fas fa-fw fa-trash" }),
-                  _vm._v("\n                    Eliminar\n                  "),
+                  _vm._v("\n            Eliminar\n          "),
                 ]
               ),
             ]),
@@ -35787,7 +35757,7 @@ var render = function () {
                     _c(
                       "label",
                       { staticClass: "form-label", attrs: { for: "nombre" } },
-                      [_vm._v("Name")]
+                      [_vm._v("Nombre")]
                     ),
                     _vm._v(" "),
                     _c("input", {
@@ -35805,6 +35775,7 @@ var render = function () {
                         id: "nombre",
                         "aria-describedby": "nombre",
                         name: "nombre",
+                        required: "",
                       },
                       domProps: { value: _vm.fields.nombre },
                       on: {
@@ -36057,6 +36028,7 @@ var render = function () {
                         id: "curso",
                         "aria-describedby": "curso",
                         name: "curso",
+                        required: "",
                       },
                       domProps: { value: _vm.fields.curso },
                       on: {
@@ -36090,6 +36062,7 @@ var render = function () {
                         id: "pregunta",
                         "aria-describedby": "pregunta",
                         name: "pregunta",
+                        required: "",
                       },
                       domProps: { value: _vm.fields.pregunta },
                       on: {
@@ -36123,6 +36096,7 @@ var render = function () {
                         id: "avance",
                         "aria-describedby": "avance",
                         name: "avance",
+                        required: "",
                       },
                       domProps: { value: _vm.fields.avance },
                       on: {
@@ -36156,6 +36130,7 @@ var render = function () {
                         id: "titulo",
                         "aria-describedby": "titulo",
                         name: "titulo",
+                        required: "",
                       },
                       domProps: { value: _vm.fields.titulo },
                       on: {
@@ -36192,6 +36167,7 @@ var render = function () {
                         id: "calificacion",
                         "aria-describedby": "calificacion",
                         name: "calificacion",
+                        required: "",
                       },
                       domProps: { value: _vm.fields.calificacion },
                       on: {
@@ -36504,6 +36480,7 @@ var render = function () {
                         id: "usuario",
                         "aria-describedby": "usuario",
                         name: "usuario",
+                        required: "",
                       },
                       domProps: { value: _vm.fields.usuario },
                       on: {
@@ -36540,6 +36517,7 @@ var render = function () {
                         id: "calificacion",
                         "aria-describedby": "calificacion",
                         name: "calificacion",
+                        required: "",
                       },
                       domProps: { value: _vm.fields.calificacion },
                       on: {
@@ -36580,6 +36558,7 @@ var render = function () {
                         id: "especialidad",
                         "aria-describedby": "especialidad",
                         name: "especialidad",
+                        required: "",
                       },
                       domProps: { value: _vm.fields.especialidad },
                       on: {
@@ -36834,6 +36813,8 @@ var render = function () {
                         id: "name",
                         "aria-describedby": "nombre",
                         name: "name",
+                        required: "",
+                        minlenght: "2",
                       },
                       domProps: { value: _vm.fields.name },
                       on: {
@@ -36864,7 +36845,7 @@ var render = function () {
                   "button",
                   {
                     staticClass: "btn btn-primary",
-                    attrs: { type: "button" },
+                    attrs: { type: "submit" },
                     on: { click: _vm.addUpdateElement },
                   },
                   [_vm._v("\n            Guardar\n          ")]
@@ -36949,8 +36930,6 @@ var render = function () {
             _c("td", [_vm._v(_vm._s(usuario.name))]),
             _vm._v(" "),
             _c("td", [_vm._v(_vm._s(usuario.email))]),
-            _vm._v(" "),
-            _c("td", [_vm._v(_vm._s(usuario.password))]),
             _vm._v(" "),
             _c("td", [
               _c(
@@ -37070,12 +37049,14 @@ var render = function () {
                           expression: "fields.name",
                         },
                       ],
+                      ref: "name",
                       staticClass: "form-control",
                       attrs: {
                         type: "text",
                         id: "name",
                         "aria-describedby": "nombre",
                         name: "name",
+                        required: "",
                       },
                       domProps: { value: _vm.fields.name },
                       on: {
@@ -37109,6 +37090,7 @@ var render = function () {
                         id: "email",
                         "aria-describedby": "nombre",
                         name: "email",
+                        required: "",
                       },
                       domProps: { value: _vm.fields.email },
                       on: {
@@ -37142,6 +37124,7 @@ var render = function () {
                         id: "password",
                         "aria-describedby": "nombre",
                         name: "password",
+                        required: "",
                       },
                       domProps: { value: _vm.fields.password },
                       on: {
@@ -37197,8 +37180,6 @@ var staticRenderFns = [
         _c("th", [_vm._v("Nombre")]),
         _vm._v(" "),
         _c("th", [_vm._v("Email")]),
-        _vm._v(" "),
-        _c("th", [_vm._v("Password")]),
         _vm._v(" "),
         _c("th", [_vm._v("Acciones")]),
       ]),

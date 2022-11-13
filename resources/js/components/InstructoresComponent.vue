@@ -58,15 +58,15 @@
 
                                 <label for="usuario" class="form-label">Usuario</label>
                                 <input type="text" v-model="fields.usuario" class="form-control" id="usuario"
-                                    aria-describedby="usuario" name="usuario" />
+                                    aria-describedby="usuario" name="usuario" required />
 
                                 <label for="calificacion" class="form-label">Calificación</label>
                                 <input type="text" v-model="fields.calificacion" class="form-control" id="calificacion"
-                                    aria-describedby="calificacion" name="calificacion" />
+                                    aria-describedby="calificacion" name="calificacion" required />
 
                                 <label for="especialidad" class="form-label">Especialidad</label>
                                 <input type="text" v-model="fields.especialidad" class="form-control" id="especialidad"
-                                    aria-describedby="especialidad" name="especialidad" />
+                                    aria-describedby="especialidad" name="especialidad" required />
                             </div>
                         </form>
                     </div>

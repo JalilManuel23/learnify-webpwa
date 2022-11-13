@@ -24,7 +24,7 @@ class EstudianteRequest extends FormRequest
     public function rules()
     {
         return [
-            'nombre' => 'required|max:50|min:2',
+            'nombre' => 'required|min:2',
         ];
     }
 }
