@@ -78,21 +78,21 @@
 
     <!-- Nav Item - Categorías -->
     <li class="nav-item">
-        <a class="nav-link" href="{{ url ('')}}">
+        <a class="nav-link" href="{{ url ('categorias')}}">
             <i class="fas fa-fw fa-book"></i>
             <span>Categorías</span></a>
     </li>
 
     <!-- Nav Item - Examen -->
     <li class="nav-item">
-        <a class="nav-link" href="{{ url ('')}}">
+        <a class="nav-link" href="{{ url ('examenes')}}">
             <i class="fas fa-fw fa-book"></i>
             <span>Examen</span></a>
     </li>
 
     <!-- Nav Item - Instructores -->
     <li class="nav-item">
-        <a class="nav-link" href="{{ url ('')}}">
+        <a class="nav-link" href="{{ url ('instructores')}}">
             <i class="fas fa-fw fa-users"></i>
             <span>Instructores</span></a>
     </li>

@@ -89,6 +89,8 @@
                   id="name"
                   aria-describedby="nombre"
                   name="name"
+                  required 
+                  minlenght="2"
                 />
               </div>
             </form>
@@ -98,7 +100,7 @@
               Close
             </button>
             <button
-              type="button"
+              type="submit"
               class="btn btn-primary"
               @click="addUpdateElement"
             >

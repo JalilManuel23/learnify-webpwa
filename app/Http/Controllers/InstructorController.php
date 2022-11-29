@@ -4,8 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
-use App\Models\InstructoreModel;
-use App\Http\Requests\RoleRequest;
+use App\Http\Requests\InstructoresRequest;
+use App\Models\Instructor;
 
 class InstructorController extends Controller
 {
@@ -15,31 +15,33 @@ class InstructorController extends Controller
         // $roles = Role::all()->toJson();
         // $roles = Role::all()->toArray();
         // dd($roles);
-        $roles = Role::all();
+        $instructors = Instructor::all();
 
-        return view('ejemplo', compact('roles'));
+        return view('instructores', compact('instructors'));
     }
 
-    public function save(RoleRequest $request)
+    public function save(InstructoresRequest $request)
     {
-        $role = new Role;
-        $role->name = $request->name;
-        $role->key_name = Str::slug($request->name);
-        $role->save();
+        $instructors = new Instructor;
+        $instructors ->usuario = $request->usuario;
+        $instructors ->calificacion = $request->calificacion;
+        $instructors ->especialidad = $request->especialidad;
+        $instructors ->save();
 
-        return redirect('roles');
+        return redirect('instructores');
     }
 
-    public function update($id)
+    public function update(Request $request)
     {
-        $role = Role::find($id);
-        $role->name = 'Administrativos';
-        $role->key_name = 'administrativos';
-        $role->save();
+        $instructors = Instructor::find($request->id);
+        $instructors ->usuario = $request->usuario;
+        $instructors ->calificacion = $request->calificacion;
+        $instructors ->especialidad = $request->especialidad;
+        $instructors ->save();
     }
 
     public function delete($id)
     {
-        Role::find($id)->delete();
+        Instructor::find($id)->delete();
     }
 }

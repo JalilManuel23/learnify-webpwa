@@ -61,23 +61,23 @@
                                 
                                 <label for="curso" class="form-label">Curso</label>
                                 <input type="text" v-model="fields.curso" class="form-control" id="curso"
-                                    aria-describedby="curso" name="curso" />
+                                    aria-describedby="curso" name="curso" required />
                              
                                 <label for="pregunta" class="form-label">Preguntas</label>
                                 <input type="text" v-model="fields.pregunta" class="form-control" id="pregunta"
-                                    aria-describedby="pregunta" name="pregunta" />
+                                    aria-describedby="pregunta" name="pregunta" required />
 
                                     <label for="avance" class="form-label">Avance</label>
                                 <input type="text" v-model="fields.avance" class="form-control" id="avance"
-                                    aria-describedby="avance" name="avance" />
+                                    aria-describedby="avance" name="avance" required />
                                 
                                 <label for="titulo" class="form-label">Titulo</label>
                                 <input type="text" v-model="fields.titulo" class="form-control" id="titulo"
-                                    aria-describedby="titulo" name="titulo" />
+                                    aria-describedby="titulo" name="titulo" required />
                                 
                                 <label for="calificacion" class="form-label">Calificación</label>
                                 <input type="text" v-model="fields.calificacion" class="form-control" id="calificacion"
-                                    aria-describedby="calificacion" name="calificacion" />
+                                    aria-describedby="calificacion" name="calificacion" required />
                             </div>
                         </form>
                     </div>
