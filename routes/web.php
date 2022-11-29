@@ -56,3 +56,5 @@ Route::post('/eliminar-categoria/{id}', [App\Http\Controllers\CategoriaControlle
 Route::post('/agregar-examen', [App\Http\Controllers\ExamenController::class, 'save']);
 Route::post('/actualizar-examen/{id}', [App\Http\Controllers\ExamenController::class, 'update']);
 Route::post('/eliminar-examen/{id}', [App\Http\Controllers\ExamenController::class, 'delete']);
+
+Route::get('correo', [App\Http\Controllers\ExampleController::class, 'index']);
